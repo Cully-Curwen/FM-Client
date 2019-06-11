@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-// import { useMutation } from 'react-apollo-hooks';
+import { useMutation } from 'react-apollo-hooks';
 // import gql from 'graphql-tag';
+
+import { 
+  CUSTOMER_REGISTER_MUTATION,
+  CUSTOMER_LOGIN_MUTATION,
+  MARKET_ADMIN_REGISTER_MUTATION,
+  MARKET_ADMIN_LOGIN_MUTATION,
+  TRADER_ADMIN_REGISTER_MUTATION,
+  TRADER_ADMIN_LOGIN_MUTATION,
+} from './graphql'
 
 function LoginAndRegister(props) {
   const { userType, formLogin } = props;
-  const customer = "customer";
-  const traderAdmin = "trader_admin";
-  const marketAdmin = "market_admin";
 
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -25,25 +31,25 @@ function LoginAndRegister(props) {
         <Link to={(formLogin ? '/login' : '/register') + '/customer'} >
           <button 
             className="user-type"
-            style={userType === customer ? {backgroundColor: 'blue'} : {} }
+            style={userType === "customer" ? {backgroundColor: 'blue'} : {} }
           >Customer</button>
         </Link>
         <Link to={(formLogin ? '/login' : '/register') + '/trader_admin'} >
           <button 
             className="user-type"
-            style={userType === traderAdmin ? {backgroundColor: 'blue'} : {} }
+            style={userType === "trader_admin" ? {backgroundColor: 'blue'} : {} }
           >Trader</button>
         </Link>
         <Link to={(formLogin ? '/login': '/register') + '/market_admin'} >
           <button 
             className="user-type"
-            style={userType === marketAdmin ? {backgroundColor: 'blue'} : {} }
+            style={userType === "market_admin" ? {backgroundColor: 'blue'} : {} }
           >Market Admin</button>
         </Link>
       </div>
       <div className="form">
         <form onSubmit={handleSubmit} >
-          <label htmlFor="email">Eamil: </label>
+          <label htmlFor="email">Email: </label>
           <input type="email" name="email" value={email} onChange={(event) => setEmail(event.target.value)} />
           <br/>
           {formLogin ? null : 
