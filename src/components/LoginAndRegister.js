@@ -14,15 +14,78 @@ import {
 
 function LoginAndRegister(props) {
   const { userType, formLogin } = props;
+  const customer = "customer";
+  const traderAdmin = "trader_admin";
+  const marketAdmin = "market_admin";
 
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
 
+  const customerRegister = useMutation(CUSTOMER_REGISTER_MUTATION, {
+    update: (proxy, mutationResult) => {
+      console.log(mutationResult)
+    },
+    variables: { email, firstName, lastName, password }
+  });
+
+  const customerLogin = useMutation(CUSTOMER_LOGIN_MUTATION, {
+    update: (proxy, mutationResult) => {
+      console.log(mutationResult)
+    },
+    variables: { email, password }
+  });
+
+  const marketAdminRegister = useMutation(MARKET_ADMIN_REGISTER_MUTATION, {
+    update: (proxy, mutationResult) => {
+      console.log(mutationResult)
+    },
+    variables: { email, firstName, lastName, password }
+  });
+
+  const marketAdminLogin = useMutation(MARKET_ADMIN_LOGIN_MUTATION, {
+    update: (proxy, mutationResult) => {
+      console.log(mutationResult)
+    },
+    variables: { email, password }
+  });
+
+  const traderAdminRegister = useMutation(TRADER_ADMIN_REGISTER_MUTATION, {
+    update: (proxy, mutationResult) => {
+      console.log(mutationResult)
+    },
+    variables: { email, firstName, lastName, password }
+  });
+
+  const traderAdminLogin = useMutation(TRADER_ADMIN_LOGIN_MUTATION, {
+    update: (proxy, mutationResult) => {
+      console.log(mutationResult)
+    },
+    variables: { email, password }
+  });
+
   const handleSubmit = event => {
     event.preventDefault();
-
+    switch (userType) {
+      case customer:
+        formLogin
+          ? customerLogin()
+          : customerRegister();
+        break;
+      case traderAdmin:
+        formLogin
+          ? traderAdminLogin()
+          : traderAdminRegister();
+        break;
+      case marketAdmin:
+        formLogin
+          ? marketAdminLogin()
+          : marketAdminRegister();
+        break;
+      default:
+        break;
+    }
   };
 
   return (
@@ -31,19 +94,19 @@ function LoginAndRegister(props) {
         <Link to={(formLogin ? '/login' : '/register') + '/customer'} >
           <button 
             className="user-type"
-            style={userType === "customer" ? {backgroundColor: 'blue'} : {} }
+            style={userType === customer ? {backgroundColor: 'blue'} : {} }
           >Customer</button>
         </Link>
         <Link to={(formLogin ? '/login' : '/register') + '/trader_admin'} >
           <button 
             className="user-type"
-            style={userType === "trader_admin" ? {backgroundColor: 'blue'} : {} }
+            style={userType === traderAdmin ? {backgroundColor: 'blue'} : {} }
           >Trader</button>
         </Link>
         <Link to={(formLogin ? '/login': '/register') + '/market_admin'} >
           <button 
             className="user-type"
-            style={userType === "market_admin" ? {backgroundColor: 'blue'} : {} }
+            style={userType === marketAdmin ? {backgroundColor: 'blue'} : {} }
           >Market Admin</button>
         </Link>
       </div>
