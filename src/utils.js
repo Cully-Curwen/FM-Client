@@ -1,9 +1,3 @@
-function Authorization() {
-  return {
-    CustomerAuthorization: localStorage.CustomerAuthorization, 
-    TraderAdminAuthorization: localStorage.TraderAdminAuthorization,
-    MarketAdminAuthorization: localStorage.MarketAdminAuthorization,
-  };
-};
-
-export default Authorization;
+export const CustomerAuthorization = () => localStorage.CustomerAuthorization;
+export const TraderAdminAuthorization = () => localStorage.TraderAdminAuthorization;
+export const MarketAdminAuthorization = () => localStorage.MarketAdminAuthorization;

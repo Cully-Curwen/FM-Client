@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { useMutation } from 'react-apollo-hooks';
 import { CustomerToken, MarketToken, TraderToken } from '../constants';
-// import gql from 'graphql-tag';
+import { CustomerAuthorization, MarketAdminAuthorization, TraderAdminAuthorization } from '../utils';
 
 import { 
   CUSTOMER_REGISTER_MUTATION,
@@ -14,7 +14,7 @@ import {
 } from './graphql'
 
 function LoginAndRegister(props) {
-  const { userType, formLogin } = props;
+  const { userType, formLogin, handleSubmitState } = props;
   const customer = "customer";
   const traderAdmin = "trader_admin";
   const marketAdmin = "market_admin";
@@ -28,16 +28,16 @@ function LoginAndRegister(props) {
     update: (proxy, mutationResult) => {
       const { token, customer } = mutationResult.data.customerRegister;
       localStorage[CustomerToken] = token;
-      console.log(mutationResult)
+      handleSubmitState({customer});
     },
     variables: { email, firstName, lastName, password }
   });
 
   const customerLogin = useMutation(CUSTOMER_LOGIN_MUTATION, {
     update: (proxy, mutationResult) => {
-      console.log('mutationResult: ',mutationResult)
       const { token, customer } = mutationResult.data.customerLogin;
       localStorage[CustomerToken] = token;
+      handleSubmitState({customer});
     },
     variables: { email, password },
   });
@@ -46,7 +46,7 @@ function LoginAndRegister(props) {
     update: (proxy, mutationResult) => {
       const { token, marketAdmin, markets } = mutationResult.data.marketAdminRegister;
       localStorage[MarketToken] = token;
-      console.log(mutationResult)
+      handleSubmitState({ marketAdmin, markets });
     },
     variables: { email, firstName, lastName, password }
   });
@@ -55,7 +55,7 @@ function LoginAndRegister(props) {
     update: (proxy, mutationResult) => {
       const { token, marketAdmin, markets } = mutationResult.data.marketAdminLogin;
       localStorage[MarketToken] = token;
-      console.log(mutationResult)
+      handleSubmitState({ marketAdmin, markets });
     },
     variables: { email, password }
   });
@@ -64,7 +64,7 @@ function LoginAndRegister(props) {
     update: (proxy, mutationResult) => {
       const { token, traderAdmin, traderCards } = mutationResult.data.traderAdminRegister;
       localStorage[TraderToken] = token;
-      console.log(mutationResult)
+      handleSubmitState({ traderAdmin, traderCards });
     },
     variables: { email, firstName, lastName, password }
   });
@@ -73,7 +73,7 @@ function LoginAndRegister(props) {
     update: (proxy, mutationResult) => {
       const { token, traderAdmin, traderCards } = mutationResult.data.traderAdminLogin;
       localStorage[TraderToken] = token;
-      console.log(mutationResult)
+      handleSubmitState({ traderAdmin, traderCards });
     },
     variables: { email, password }
   });
@@ -98,25 +98,28 @@ function LoginAndRegister(props) {
         break;
       default:
         break;
-    }
+    };
   };
 
   return (
     <div className="login-and-register form-container">
+      {CustomerAuthorization() ? <Redirect push to='/customer' /> : null}
+      {MarketAdminAuthorization() ? <Redirect push to='/market_admin' /> : null}
+      {TraderAdminAuthorization() ? <Redirect push to='/trader_admin' /> : null}
       <div className="account-type">
-        <Link to={(formLogin ? '/login' : '/register') + '/customer'} >
+        <Link to={'/customer' + (formLogin ? '/login' : '/register')} >
           <button 
             className="user-type"
             style={userType === customer ? {backgroundColor: 'blue'} : {} }
           >Customer</button>
         </Link>
-        <Link to={(formLogin ? '/login' : '/register') + '/trader_admin'} >
+        <Link to={'/trader_admin' + (formLogin ? '/login' : '/register')} >
           <button 
             className="user-type"
             style={userType === traderAdmin ? {backgroundColor: 'blue'} : {} }
           >Trader</button>
         </Link>
-        <Link to={(formLogin ? '/login': '/register') + '/market_admin'} >
+        <Link to={'/market_admin' + (formLogin ? '/login': '/register')} >
           <button 
             className="user-type"
             style={userType === marketAdmin ? {backgroundColor: 'blue'} : {} }
@@ -143,7 +146,7 @@ function LoginAndRegister(props) {
           <br/>
           <input type="submit" value={formLogin ? "Login" : "Register"} />
         </form>
-        <Link to={(formLogin ? '/register' : '/login') + "/" + userType}>
+        <Link to={"/" + userType + (formLogin ? '/register' : '/login')}>
           <button className="form-type btn">{formLogin ? "Change to Register Form" : "Change to Login Form"}</button>
         </Link>
       </div>

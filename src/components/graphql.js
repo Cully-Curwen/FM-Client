@@ -151,7 +151,7 @@ export const MARKET_ADMIN_REGISTER_MUTATION = gql`
 
 export const MARKET_ADMIN_LOGIN_MUTATION = gql`
   mutation marketAdminLogin( $email: String!, $password: String! ) {
-    customerLogin(email: $email, password: $password) {
+    marketAdminLogin(email: $email, password: $password) {
       token
       marketAdmin {
         id
@@ -252,7 +252,7 @@ export const TRADER_ADMIN_REGISTER_MUTATION = gql`
 
 export const TRADER_ADMIN_LOGIN_MUTATION = gql`
   mutation traderAdminLogin($email: String!, $password: String!) {
-    customerLogin(email: $email, password: $password) {
+    traderAdminLogin(email: $email, password: $password) {
       token
       traderAdmin {
         id
@@ -290,7 +290,7 @@ export const TRADER_ADMIN_UPDATE_MUTATION = gql`
     $password: String!, 
     $newPassword: String
   ) {
-    marketAdminUpdate(
+    traderAdminUpdate(
       email: $email,
       firstName: $firstName,
       lastName: $lastName,
