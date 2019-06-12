@@ -30,8 +30,7 @@ function Customer(props) {
             handleSubmitState={handleLoginAndRegisterSubmit}
           />
         } />
-        <Route path='/customer/markets' component={props => <h1>Markets</h1>} />
-        {CustomerAuthorization 
+        {CustomerAuthorization() 
           ? <Route path='/customer/markets' component={props => <h1>Markets</h1>} />
           : <Redirect to='/customer/login' />
         }

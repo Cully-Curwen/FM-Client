@@ -34,8 +34,7 @@ function TraderAdmin() {
             handleSubmitState={handleLoginAndRegisterSubmit}
           />
         } />
-        <Route path='/trader_admin/markets' component={props => <h1>Markets</h1>} />
-        {TraderAdminAuthorization 
+        {TraderAdminAuthorization()
           ? <Route path='/trader_admin/markets' component={props => <h1>Markets</h1>} />
           : <Redirect to='/trader_admin/login' />
         }

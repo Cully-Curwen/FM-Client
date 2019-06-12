@@ -33,8 +33,7 @@ function MarketAdmin() {
             handleSubmitState={handleLoginAndRegisterSubmit}
           />
         } />
-        <Route path='/market_admin/markets' component={props => <h1>Markets</h1>} />
-        {MarketAdminAuthorization 
+        {MarketAdminAuthorization()
           ? <Route path='/market_admin/markets' component={props => <h1>Markets</h1>} />
           : <Redirect to='/market_admin/login' />
         }
