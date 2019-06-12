@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { CustomerAuthorization } from '../utils';
 import LoginAndRegister from './LoginAndRegister';
+import Markets from './Markets'
 
 import { CUSTOMER_DATA_QUERY } from '../graphql'
 
@@ -14,7 +15,6 @@ function Customer(props) {
   
   return (
     <div className="customer">
-      <p>{Object.keys(customerData)}</p>
       <Switch>
         <Route path='/customer/login' component={props => 
           <LoginAndRegister 
@@ -33,7 +33,10 @@ function Customer(props) {
           />
         } />
         {CustomerAuthorization() 
-          ? <Route path='/customer/markets' component={props => <h1>Markets</h1>} />
+          ? <>
+            <Route path='/customer/markets' component={props => <Markets {...props} />} />
+            <Redirect to='/customer/markets' from='/customer' />
+          </>
           : <Redirect to='/customer/login' />
         }
       </Switch>

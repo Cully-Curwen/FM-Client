@@ -26,10 +26,9 @@ export const CUSTOMER_DATA_QUERY = gql`
 `;
 
 export const MARKET_LIST_QUERY = gql`
-  query marketsList {
-    market {
+  query { 
+    marketsList {
       id
-      admins
       name
       blurb
       address
