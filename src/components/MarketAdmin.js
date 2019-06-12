@@ -17,7 +17,7 @@ function MarketAdmin() {
       <p>{Object.keys(marketAdminData)}</p>
       <p>{Object.keys(marketsData)}</p>
       <Switch>
-        <Route path='/market_admin/login' render={props => 
+        <Route path='/market_admin/login' component={props => 
           <LoginAndRegister 
             {...props} 
             userType={'market_admin'} 
@@ -25,7 +25,7 @@ function MarketAdmin() {
             handleSubmitState={handleLoginAndRegisterSubmit}
           />
         } />
-        <Route path='/market_admin/register' render={props => 
+        <Route path='/market_admin/register' component={props => 
           <LoginAndRegister 
             {...props} 
             userType={'market_admin'} 

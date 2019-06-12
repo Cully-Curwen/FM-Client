@@ -1,5 +1,30 @@
 import gql from 'graphql-tag';
 
+export const CUSTOMER_DATA_QUERY = gql`
+  query customerData {
+    id
+    email
+    firstName
+    lastName
+    shoppingCarts {
+      market {
+        id
+        name
+      }
+      items {
+        traderCardId
+        itemId
+        name
+        description
+        price
+        quantity
+      }
+    }
+  }
+`;
+
+// Mutations
+// 
 export const CUSTOMER_REGISTER_MUTATION = gql`
   mutation customerRegister(
     $email: String!, 

@@ -3,6 +3,8 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { CustomerAuthorization } from '../utils';
 import LoginAndRegister from './LoginAndRegister';
 
+import { CUSTOMER_DATA_QUERY } from '../graphql'
+
 function Customer(props) {
   const [customerData, setCustomerData] = useState({});
 
@@ -14,7 +16,7 @@ function Customer(props) {
     <div className="customer">
       <p>{Object.keys(customerData)}</p>
       <Switch>
-        <Route path='/customer/login' render={props => 
+        <Route path='/customer/login' component={props => 
           <LoginAndRegister 
             {...props} 
             userType={'customer'} 
@@ -22,7 +24,7 @@ function Customer(props) {
             handleSubmitState={handleLoginAndRegisterSubmit}
           />
         } />
-        <Route path='/customer/register' render={props => 
+        <Route path='/customer/register' component={props => 
           <LoginAndRegister 
             {...props} 
             userType={'customer'} 
