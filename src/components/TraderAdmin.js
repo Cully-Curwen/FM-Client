@@ -18,7 +18,7 @@ function TraderAdmin() {
       <p>{Object.keys(traderAdminData)}</p>
       <p>{Object.keys(traderCardsData)}</p>
       <Switch>
-        <Route path='/trader_admin/login' render={props => 
+        <Route path='/trader_admin/login' component={props => 
           <LoginAndRegister 
             {...props} 
             userType={'trader_admin'} 
@@ -26,7 +26,7 @@ function TraderAdmin() {
             handleSubmitState={handleLoginAndRegisterSubmit}
           />
         } />
-        <Route path='/trader_admin/register' render={props => 
+        <Route path='/trader_admin/register' component={props => 
           <LoginAndRegister 
             {...props} 
             userType={'trader_admin'} 
@@ -34,8 +34,7 @@ function TraderAdmin() {
             handleSubmitState={handleLoginAndRegisterSubmit}
           />
         } />
-        <Route path='/trader_admin/markets' component={props => <h1>Markets</h1>} />
-        {TraderAdminAuthorization 
+        {TraderAdminAuthorization()
           ? <Route path='/trader_admin/markets' component={props => <h1>Markets</h1>} />
           : <Redirect to='/trader_admin/login' />
         }

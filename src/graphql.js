@@ -1,5 +1,98 @@
 import gql from 'graphql-tag';
 
+// Querys
+// 
+export const CUSTOMER_DATA_QUERY = gql`
+  query customerData {
+    id
+    email
+    firstName
+    lastName
+    shoppingCarts {
+      market {
+        id
+        name
+      }
+      items {
+        traderCardId
+        itemId
+        name
+        description
+        price
+        quantity
+      }
+    }
+  }
+`;
+
+export const MARKET_LIST_QUERY = gql`
+  query { 
+    marketsList {
+      id
+      name
+      blurb
+      address
+      geoLocation {
+        coordinates
+      }
+      directions
+      imgUrl
+      openHours {
+        openTime
+        closeTime
+        tradingDay
+      }
+    }
+  }
+`;
+
+export const MARKET_DETAILS_QUERY = gql`
+  query marketDetails($marketId: ID!) {
+    marketDetails(marketId: $marketId) {
+      id
+      admins
+      name
+      blurb
+      address
+      geoLocation {
+        coordinates
+      }
+      directions
+      imgUrl
+      openHours {
+        openTime
+        closeTime
+        tradingDay
+      }
+    }
+  }
+`;
+
+export const TRADER_CARD_DETAILS_QUERY = gql`
+  query traderCardDetails($traderCardId: ID!) {
+    traderCardDetails(traderCardId: $traderCardId) {
+      id
+      admins
+      name
+      blurb
+      imgUrl
+      links {
+        website
+      }
+      produceTags
+      inventory {
+        id
+        name
+        description
+        stock
+        price
+      }
+    }
+  }
+`;
+
+// Mutations
+// 
 export const CUSTOMER_REGISTER_MUTATION = gql`
   mutation customerRegister(
     $email: String!, 

@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { CustomerAuthorization } from '../utils';
 import LoginAndRegister from './LoginAndRegister';
+import Markets from './Markets'
+
+import { CUSTOMER_DATA_QUERY } from '../graphql'
 
 function Customer(props) {
   const [customerData, setCustomerData] = useState({});
@@ -12,9 +15,8 @@ function Customer(props) {
   
   return (
     <div className="customer">
-      <p>{Object.keys(customerData)}</p>
       <Switch>
-        <Route path='/customer/login' render={props => 
+        <Route path='/customer/login' component={props => 
           <LoginAndRegister 
             {...props} 
             userType={'customer'} 
@@ -22,7 +24,7 @@ function Customer(props) {
             handleSubmitState={handleLoginAndRegisterSubmit}
           />
         } />
-        <Route path='/customer/register' render={props => 
+        <Route path='/customer/register' component={props => 
           <LoginAndRegister 
             {...props} 
             userType={'customer'} 
@@ -30,9 +32,11 @@ function Customer(props) {
             handleSubmitState={handleLoginAndRegisterSubmit}
           />
         } />
-        <Route path='/customer/markets' component={props => <h1>Markets</h1>} />
-        {CustomerAuthorization 
-          ? <Route path='/customer/markets' component={props => <h1>Markets</h1>} />
+        {CustomerAuthorization() 
+          ? <>
+            <Route path='/customer/markets' component={props => <Markets {...props} />} />
+            <Redirect from='/customer' to='/customer/markets' />
+          </>
           : <Redirect to='/customer/login' />
         }
       </Switch>
