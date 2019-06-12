@@ -35,7 +35,7 @@ function Customer(props) {
         {CustomerAuthorization() 
           ? <>
             <Route path='/customer/markets' component={props => <Markets {...props} />} />
-            <Redirect to='/customer/markets' from='/customer' />
+            <Redirect from='/customer' to='/customer/markets' />
           </>
           : <Redirect to='/customer/login' />
         }

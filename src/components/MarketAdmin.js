@@ -34,7 +34,10 @@ function MarketAdmin() {
           />
         } />
         {MarketAdminAuthorization()
-          ? <Route path='/market_admin/markets' component={props => <h1>Markets</h1>} />
+          ? <>
+            <Route path='/market_admin/markets' component={props => <h1>Markets</h1>} />
+            <Redirect from='/market_admin'  to='/market_admin/markets' />
+          </>
           : <Redirect to='/market_admin/login' />
         }
       </Switch>

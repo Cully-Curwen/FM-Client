@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { useQuery } from 'react-apollo-hooks';
-import MarketTile from './MarketTile';
+import MarketCard from './MarketCard';
 
 import { MARKET_LIST_QUERY } from '../graphql'
 
 function Markets(props) {
+  const [selectedMarket, setSelectedMarket] = useState({});
+
   const { data, error, loading } = useQuery(MARKET_LIST_QUERY);
   if (loading) {
     return <div>Loading...</div>;
@@ -16,9 +18,12 @@ function Markets(props) {
 
   return (
     <div className="markets">
-      {data.marketsList.map(market => 
-        <MarketTile key={market.id} market={market} />
-      )}
+      {selcetedMarket 
+        ? 
+        : data.marketsList.map(market => 
+          <MarketCard key={market.id} market={market} />
+        )
+      }
     </div>
   );
 };
