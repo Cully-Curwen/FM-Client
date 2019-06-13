@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../styling/App.css';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { CustomerAuthorization, MarketAdminAuthorization, TraderAdminAuthorization } from '../utils';
-import NavBar from "./NavBar";
+import NavBar from "./navbar/NavBar";
 // import Customer from './Customer';
 // import MarketAdmin from './MarketAdmin';
 // import TraderAdmin from './TraderAdmin';
@@ -10,13 +10,15 @@ import LoginAndRegister from './LoginAndRegister';
 import Markets from './Markets';
 import Market from './Market';
 import TraderCard from './TraderCard';
+import { useQuery } from 'react-apollo-hooks';
+import { CUSTOMER_DATA_QUERY } from '../graphql-types';
 
 function App(props) {
+
+  const { data, error, loading} = useQuery(CUSTOMER_DATA_QUERY);
+
   const authorized = () => {
-    if (CustomerAuthorization()) {
-      
-      return <Redirect to='/markets' />;
-    };
+    if (CustomerAuthorization()) return <Redirect to='/markets' />
     if (MarketAdminAuthorization()) return <Redirect to='/market_admin' />
     if (TraderAdminAuthorization()) return <Redirect to='/trader_admin' />
     return <Redirect to='/customer/login' />

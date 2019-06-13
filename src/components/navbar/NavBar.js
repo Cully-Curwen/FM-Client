@@ -1,9 +1,28 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import '../styling/NavBar.css';
+import '../../styling/NavBar.css';
 import { Route } from 'react-router-dom';
+import { useQuery } from 'react-apollo-hooks';
+import { CUSTOMER_DATA_QUERY } from '../../graphql-types';
+import { CustomerAuthorization, MarketAdminAuthorization, TraderAdminAuthorization } from '../../utils';
+import AccountMenu from "./AccountMenu";
 
 function NavBar(props) {
+  
+  const { data, error, loading} = useQuery(CUSTOMER_DATA_QUERY);
+
+  const authorized = () => {
+    if (CustomerAuthorization()) return (
+      <AccountMenu />
+    );
+    if (MarketAdminAuthorization()) return (
+      <AccountMenu />
+    ); 
+    if (TraderAdminAuthorization()) return (
+      <AccountMenu />
+    ); 
+    return ( <h3>Welcome</h3> ); 
+  };
 
   return (
     <div className='navbar' >
@@ -26,14 +45,7 @@ function NavBar(props) {
         )} />
       </div>
       <div className="nav-div account">
-        <button 
-            className="SignOut"
-            onClick={() => localStorage.clear()}
-            >
-            <Link to='/customer/login' >
-              SignOut
-            </Link>
-        </button>
+        {authorized()}
       </div>
     </div>
   );

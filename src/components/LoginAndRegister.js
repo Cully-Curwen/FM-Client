@@ -11,7 +11,7 @@ import {
   MARKET_ADMIN_LOGIN_MUTATION,
   TRADER_ADMIN_REGISTER_MUTATION,
   TRADER_ADMIN_LOGIN_MUTATION,
-} from '../graphql'
+} from '../graphql-types'
 
 function LoginAndRegister(props) {
   const { userType, formLogin, handleSubmitState } = props;

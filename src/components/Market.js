@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useQuery } from 'react-apollo-hooks';
-import { MARKET_DETAILS_QUERY } from '../graphql';
+import { MARKET_DETAILS_QUERY } from '../graphql-types';
 import TraderTile from './TraderTile';
 
 function Market(props) {

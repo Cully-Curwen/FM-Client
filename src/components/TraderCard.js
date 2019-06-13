@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
 import { useQuery } from 'react-apollo-hooks';
-import { TRADER_CARD_DETAILS_QUERY } from '../graphql';
+import { TRADER_CARD_DETAILS_QUERY } from '../graphql-types';
 import Item from './Item';
 
 function TraderCard(props) {
   const [slide, setSlide] = useState('info');
   
-  const { data, error, loading } = useQuery(TRADER_CARD_DETAILS_QUERY, {variables: { traderCardId: props.match.params.id}});
+  const { data, error, loading } = useQuery(
+    TRADER_CARD_DETAILS_QUERY, 
+    {
+      variables: { traderCardId: props.match.params.id},
+      fetchPolicy: 'cache-and-network',
+    }
+  );
   if (loading) {
     return <div>Loading...</div>;
   };
