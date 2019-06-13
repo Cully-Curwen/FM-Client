@@ -1,7 +1,6 @@
 import gql from 'graphql-tag';
 
 // Querys
-// 
 export const CUSTOMER_DATA_QUERY = gql`
   query customerData {
     id
@@ -64,6 +63,17 @@ export const MARKET_DETAILS_QUERY = gql`
         closeTime
         tradingDay
       }
+      traders {
+        id
+        admins
+        name
+        blurb
+        imgUrl
+        links {
+          website
+        }
+        produceTags
+      }
     }
   }
 `;
@@ -92,7 +102,6 @@ export const TRADER_CARD_DETAILS_QUERY = gql`
 `;
 
 // Mutations
-// 
 export const CUSTOMER_REGISTER_MUTATION = gql`
   mutation customerRegister(
     $email: String!, 

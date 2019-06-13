@@ -8,7 +8,6 @@ function TraderAdmin() {
   const [traderCardsData, setTraderCardsData] = useState([]);
 
   const handleLoginAndRegisterSubmit = ({ traderAdmin, traderCards }) => {
-    console.log(traderAdmin, traderCards);
     setTraderAdminData(traderAdmin);
     setTraderCardsData(traderCards);
   };

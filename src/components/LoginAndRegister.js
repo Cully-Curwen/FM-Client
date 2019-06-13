@@ -103,7 +103,7 @@ function LoginAndRegister(props) {
 
   return (
     <div className="login-and-register form-container">
-      {CustomerAuthorization() ? <Redirect push to='/customer' /> : null}
+      {CustomerAuthorization() ? <Redirect push to='/markets' /> : null}
       {MarketAdminAuthorization() ? <Redirect push to='/market_admin' /> : null}
       {TraderAdminAuthorization() ? <Redirect push to='/trader_admin' /> : null}
       <div className="account-type">

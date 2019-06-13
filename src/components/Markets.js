@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+// import { Switch, Route, Redirect } from 'react-router-dom';
 import { useQuery } from 'react-apollo-hooks';
 import MarketCard from './MarketCard';
 
@@ -18,9 +18,10 @@ function Markets(props) {
 
   return (
     <div className="markets">
-      {selcetedMarket 
+      {/* {selcetedMarket 
         ? 
-        : data.marketsList.map(market => 
+        :  */}
+      { data.marketsList.map(market => 
           <MarketCard key={market.id} market={market} />
         )
       }
