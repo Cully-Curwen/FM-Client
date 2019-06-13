@@ -25,8 +25,8 @@ function TraderCard(props) {
     switch (slide) {
       case 'info':
         return (
-          <div className="market-info">
-            <img src={imgUrl} alt="of Market"/>
+          <div className="trader-info">
+            <img src={imgUrl} alt="of Trader"/>
             <h3>{name}</h3>
             <p>{produceTags.join(', ')}</p>
             <p>{blurb}</p>
@@ -35,7 +35,7 @@ function TraderCard(props) {
         );
       case 'traderCards':
         return (
-          <div className="trader-cards">
+          <div className="inventory">
             {inventory.map(item => 
               <Item key={item.id} item={item} {...props} />  
             )}

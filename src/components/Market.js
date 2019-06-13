@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useQuery } from 'react-apollo-hooks';
 import { MARKET_DETAILS_QUERY } from '../graphql-types';
 import TraderTile from './TraderTile';
+import '../styling/Market.css'
 
 function Market(props) {
   const [slide, setSlide] = useState('info');

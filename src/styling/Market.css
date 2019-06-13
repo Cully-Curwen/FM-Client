@@ -1,0 +1,19 @@
+.market-container {
+  display: flex;
+  justify-content: center;
+}
+
+.market-info {
+  width: 80%;
+  height: auto;
+  margin: 10px;
+  border-style: solid;
+  border-color: black;
+  display: flexbox;
+  justify-content: center;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
