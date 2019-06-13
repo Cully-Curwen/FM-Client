@@ -26,6 +26,44 @@ export const CUSTOMER_DATA_QUERY = gql`
   }
 `;
 
+export const MARKET_ADMIN_DATA_QUERY = gql`
+  query {
+    marketAdminData {
+      id
+      email
+      firstName
+      lastName
+    }
+    administeredMarkets {
+      id
+      name
+      blurb
+      address
+      geoLocation {
+        coordinates
+      }
+      directions
+      imgUrl
+      openHours {
+        openTime
+        closeTime
+        tradingDay
+      }
+    }
+  }
+`;
+
+export const TRADER_ADMIN_DATA_QUERY = gql`
+  query {
+    traderAdminData {
+      id
+      email
+      firstName
+      lastName
+    }
+  }
+`;
+
 export const MARKET_LIST_QUERY = gql`
   query { 
     marketsList {
