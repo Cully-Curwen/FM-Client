@@ -1,41 +1,43 @@
 import React, { useState } from 'react';
 import { useQuery } from 'react-apollo-hooks';
-import { MARKET_DETAILS_QUERY } from '../graphql-types';
-import TraderTile from './TraderTile';
-import '../styling/Market.css'
+import { TRADER_CARD_DETAILS_QUERY } from '../graphql-types';
+import Item from './Item';
 
-function Market(props) {
+function TraderCard(props) {
   const [slide, setSlide] = useState('info');
-
-  const { data, error, loading } = useQuery(MARKET_DETAILS_QUERY, {variables: { marketId: props.match.params.id}});
   
+  const { data, error, loading } = useQuery(
+    TRADER_CARD_DETAILS_QUERY, 
+    {
+      variables: { traderCardId: props.match.params.id},
+      fetchPolicy: 'cache-and-network',
+    }
+  );
   if (loading) {
     return <div>Loading...</div>;
   };
-  
   if (error) {
     return <div>Error! {error.message}</div>
   };
-  
-  const { name, blurb, address, geoLocation, directions, imgUrl, openHours, traders } = data.marketDetails;
+  const { id, name, blurb, imgUrl, links, produceTags, inventory } = data.traderCardDetails;
   
   const displayLogic = () => {
     switch (slide) {
       case 'info':
         return (
-          <div className="market-info">
-            <img src={imgUrl} alt="of Market"/>
+          <div className="trader-info">
+            <img src={imgUrl} alt="of Trader"/>
             <h3>{name}</h3>
+            <p>{produceTags.join(', ')}</p>
             <p>{blurb}</p>
-            <p>{address}</p>
-            <p>{geoLocation.coordinates.join(', ')}</p>
+            <ul>{Object.keys(links).map(key => <li key={key} >{key + ': ' + links[key]}</li>)}</ul>
           </div>
         );
       case 'traderCards':
         return (
-          <div className="trader-cards">
-            {traders.map(trader => 
-              <TraderTile key={trader.id} traderCard={trader} {...props} />  
+          <div className="inventory">
+            {inventory.map(item => 
+              <Item key={item.id} item={item} {...props} />  
             )}
           </div>
         );
@@ -45,7 +47,7 @@ function Market(props) {
   };
 
   return (
-    <div className="market">
+    <div className="trader-card">
       <div className="slide-select-container">
         <button 
           className="slide-select-btn"
@@ -54,13 +56,13 @@ function Market(props) {
         <button 
           className="slide-select-btn"
           onClick={() => setSlide('traderCards')}
-        >Traders</button>
+        >Products</button>
       </div>
-      <div className="market-container">
+      <div className="trader-card-container">
         {displayLogic()}
       </div>
     </div>
   );
 };
 
-export default Market;
+export default TraderCard;

@@ -11,7 +11,7 @@ import {
   MARKET_ADMIN_LOGIN_MUTATION,
   TRADER_ADMIN_REGISTER_MUTATION,
   TRADER_ADMIN_LOGIN_MUTATION,
-} from '../graphql'
+} from '../graphql-types'
 
 function LoginAndRegister(props) {
   const { userType, formLogin, handleSubmitState } = props;
@@ -28,7 +28,6 @@ function LoginAndRegister(props) {
     update: (proxy, mutationResult) => {
       const { token, customer } = mutationResult.data.customerRegister;
       localStorage[CustomerToken] = token;
-      handleSubmitState({customer});
     },
     variables: { email, firstName, lastName, password }
   });
@@ -37,7 +36,6 @@ function LoginAndRegister(props) {
     update: (proxy, mutationResult) => {
       const { token, customer } = mutationResult.data.customerLogin;
       localStorage[CustomerToken] = token;
-      handleSubmitState({customer});
     },
     variables: { email, password },
   });
@@ -46,7 +44,6 @@ function LoginAndRegister(props) {
     update: (proxy, mutationResult) => {
       const { token, marketAdmin, markets } = mutationResult.data.marketAdminRegister;
       localStorage[MarketToken] = token;
-      handleSubmitState({ marketAdmin, markets });
     },
     variables: { email, firstName, lastName, password }
   });
@@ -55,7 +52,6 @@ function LoginAndRegister(props) {
     update: (proxy, mutationResult) => {
       const { token, marketAdmin, markets } = mutationResult.data.marketAdminLogin;
       localStorage[MarketToken] = token;
-      handleSubmitState({ marketAdmin, markets });
     },
     variables: { email, password }
   });
@@ -64,7 +60,6 @@ function LoginAndRegister(props) {
     update: (proxy, mutationResult) => {
       const { token, traderAdmin, traderCards } = mutationResult.data.traderAdminRegister;
       localStorage[TraderToken] = token;
-      handleSubmitState({ traderAdmin, traderCards });
     },
     variables: { email, firstName, lastName, password }
   });
@@ -73,7 +68,6 @@ function LoginAndRegister(props) {
     update: (proxy, mutationResult) => {
       const { token, traderAdmin, traderCards } = mutationResult.data.traderAdminLogin;
       localStorage[TraderToken] = token;
-      handleSubmitState({ traderAdmin, traderCards });
     },
     variables: { email, password }
   });
@@ -101,11 +95,15 @@ function LoginAndRegister(props) {
     };
   };
 
+  const authorized = () => {
+    if (CustomerAuthorization()) return <Redirect push to='/markets' />
+    if (MarketAdminAuthorization()) return <Redirect push to='/market_admin' />
+    if (TraderAdminAuthorization()) return <Redirect push to='/trader_admin' />
+  };
+
   return (
     <div className="login-and-register form-container">
-      {CustomerAuthorization() ? <Redirect push to='/customer' /> : null}
-      {MarketAdminAuthorization() ? <Redirect push to='/market_admin' /> : null}
-      {TraderAdminAuthorization() ? <Redirect push to='/trader_admin' /> : null}
+      {authorized()}
       <div className="account-type">
         <Link to={'/customer' + (formLogin ? '/login' : '/register')} >
           <button 
