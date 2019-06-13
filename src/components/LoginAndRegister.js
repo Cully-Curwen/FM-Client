@@ -28,7 +28,7 @@ function LoginAndRegister(props) {
     update: (proxy, mutationResult) => {
       const { token, customer } = mutationResult.data.customerRegister;
       localStorage[CustomerToken] = token;
-      handleSubmitState({customer});
+      // handleSubmitState({customer});
     },
     variables: { email, firstName, lastName, password }
   });
@@ -37,7 +37,7 @@ function LoginAndRegister(props) {
     update: (proxy, mutationResult) => {
       const { token, customer } = mutationResult.data.customerLogin;
       localStorage[CustomerToken] = token;
-      handleSubmitState({customer});
+      // handleSubmitState({customer});
     },
     variables: { email, password },
   });
@@ -46,7 +46,7 @@ function LoginAndRegister(props) {
     update: (proxy, mutationResult) => {
       const { token, marketAdmin, markets } = mutationResult.data.marketAdminRegister;
       localStorage[MarketToken] = token;
-      handleSubmitState({ marketAdmin, markets });
+      // handleSubmitState({ marketAdmin, markets });
     },
     variables: { email, firstName, lastName, password }
   });
@@ -55,7 +55,7 @@ function LoginAndRegister(props) {
     update: (proxy, mutationResult) => {
       const { token, marketAdmin, markets } = mutationResult.data.marketAdminLogin;
       localStorage[MarketToken] = token;
-      handleSubmitState({ marketAdmin, markets });
+      // handleSubmitState({ marketAdmin, markets });
     },
     variables: { email, password }
   });
@@ -64,7 +64,7 @@ function LoginAndRegister(props) {
     update: (proxy, mutationResult) => {
       const { token, traderAdmin, traderCards } = mutationResult.data.traderAdminRegister;
       localStorage[TraderToken] = token;
-      handleSubmitState({ traderAdmin, traderCards });
+      // handleSubmitState({ traderAdmin, traderCards });
     },
     variables: { email, firstName, lastName, password }
   });
@@ -73,7 +73,7 @@ function LoginAndRegister(props) {
     update: (proxy, mutationResult) => {
       const { token, traderAdmin, traderCards } = mutationResult.data.traderAdminLogin;
       localStorage[TraderToken] = token;
-      handleSubmitState({ traderAdmin, traderCards });
+      // handleSubmitState({ traderAdmin, traderCards });
     },
     variables: { email, password }
   });

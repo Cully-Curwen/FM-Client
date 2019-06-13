@@ -2,23 +2,25 @@ import gql from 'graphql-tag';
 
 // Querys
 export const CUSTOMER_DATA_QUERY = gql`
-  query customerData {
-    id
-    email
-    firstName
-    lastName
-    shoppingCarts {
-      market {
-        id
-        name
-      }
-      items {
-        traderCardId
-        itemId
-        name
-        description
-        price
-        quantity
+  query {
+    customerData {
+      id
+      email
+      firstName
+      lastName
+      shoppingCarts {
+        market {
+          id
+          name
+        }
+        items {
+          traderCardId
+          itemId
+          name
+          description
+          price
+          quantity
+        }
       }
     }
   }

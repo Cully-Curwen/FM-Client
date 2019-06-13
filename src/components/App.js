@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../styling/App.css';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { CustomerAuthorization, MarketAdminAuthorization, TraderAdminAuthorization } from '../utils';
 import NavBar from "./NavBar";
 // import Customer from './Customer';
@@ -11,37 +11,40 @@ import Markets from './Markets';
 import Market from './Market';
 import TraderCard from './TraderCard';
 
-function App() {
+function App(props) {
   const authorized = () => {
-    if (CustomerAuthorization()) return <Redirect to='/markets' />
+    if (CustomerAuthorization()) {
+      
+      return <Redirect to='/markets' />;
+    };
     if (MarketAdminAuthorization()) return <Redirect to='/market_admin' />
     if (TraderAdminAuthorization()) return <Redirect to='/trader_admin' />
     return <Redirect to='/customer/login' />
   };
 
-  const [customerData, setCustomerData] = useState({});
-  const handleCustomerLoginAndRegister = ({customer}) => {
-    setCustomerData(customer);
-  };
+  // const [customerData, setCustomerData] = useState({});
+  // const handleCustomerLoginAndRegister = ({customer}) => {
+  //   setCustomerData(customer);
+  // };
 
-  const [marketAdminData, setMarketAdminData] = useState({});
-  const [marketsData, setMarketsData] = useState([]);
-  const handleMarketAdminLoginAndRegister = ({ marketAdmin, markets }) => {
-    setMarketAdminData(marketAdmin);
-    setMarketsData(markets);
-  };
+  // const [marketAdminData, setMarketAdminData] = useState({});
+  // const [marketsData, setMarketsData] = useState([]);
+  // const handleMarketAdminLoginAndRegister = ({ marketAdmin, markets }) => {
+  //   setMarketAdminData(marketAdmin);
+  //   setMarketsData(markets);
+  // };
 
-  const [traderAdminData, setTraderAdminData] = useState({});
-  const [traderCardsData, setTraderCardsData] = useState([]);
-  const handleTraderAdminLoginAndRegister = ({ traderAdmin, traderCards }) => {
-    setTraderAdminData(traderAdmin);
-    setTraderCardsData(traderCards);
-  };
+  // const [traderAdminData, setTraderAdminData] = useState({});
+  // const [traderCardsData, setTraderCardsData] = useState([]);
+  // const handleTraderAdminLoginAndRegister = ({ traderAdmin, traderCards }) => {
+  //   setTraderAdminData(traderAdmin);
+  //   setTraderCardsData(traderCards);
+  // };
 
   return (
     <div className="App">
       <div className="header">
-        <NavBar />
+        <NavBar {...props} />
       </div>
       <div className="body">
         <Switch>
@@ -50,7 +53,7 @@ function App() {
               {...props} 
               userType={'customer'} 
               formLogin={true} 
-              handleSubmitState={handleCustomerLoginAndRegister}
+              // handleSubmitState={handleCustomerLoginAndRegister}
             />} 
           />
           <Route path='/customer/register' component={props => 
@@ -58,7 +61,7 @@ function App() {
               {...props} 
               userType={'customer'} 
               formLogin={false} 
-              handleSubmitState={handleCustomerLoginAndRegister}
+              // handleSubmitState={handleCustomerLoginAndRegister}
             />} 
           />
           <Route path='/markets' component={props => <Markets {...props} />} />
@@ -68,7 +71,7 @@ function App() {
               {...props} 
               userType={'market_admin'} 
               formLogin={true} 
-              handleSubmitState={handleMarketAdminLoginAndRegister}
+              // handleSubmitState={handleMarketAdminLoginAndRegister}
             />} 
           />
           <Route path='/market_admin/register' component={props => 
@@ -76,7 +79,7 @@ function App() {
               {...props} 
               userType={'market_admin'} 
               formLogin={false} 
-              handleSubmitState={handleMarketAdminLoginAndRegister}
+              // handleSubmitState={handleMarketAdminLoginAndRegister}
             />} 
           />
           <Route path='/trader/:id' component={props => <TraderCard {...props} />} />
@@ -85,7 +88,7 @@ function App() {
             {...props} 
             userType={'trader_admin'} 
             formLogin={true} 
-            handleSubmitState={handleTraderAdminLoginAndRegister}
+            // handleSubmitState={handleTraderAdminLoginAndRegister}
           />}
         />
         <Route path='/trader_admin/register' component={props => 
@@ -93,7 +96,7 @@ function App() {
             {...props} 
             userType={'trader_admin'} 
             formLogin={false} 
-            handleSubmitState={handleTraderAdminLoginAndRegister}
+            // handleSubmitState={handleTraderAdminLoginAndRegister}
           />} 
         />
           {/* <Route path="/customer" component={Customer} /> */}
@@ -109,4 +112,4 @@ function App() {
 };
 
 
-export default App;
+export default withRouter(App);

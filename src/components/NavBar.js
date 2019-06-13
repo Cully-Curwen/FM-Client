@@ -1,38 +1,41 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
+import '../styling/NavBar.css';
+import { Route } from 'react-router-dom';
 
 function NavBar(props) {
 
-  // const customer = props.match.path.toString.include("customer");
-
   return (
-    <nav styling={{ display: 'flex', justifyContent: 'space-between' }}>
-      <NavLink 
-        exact
-        to='/customer/markets'
-        activeStyle={{
-          fontWeight: "bold",
-          color: "red"
-        }}
-      >Market List</NavLink>
-      {/* {customer ? <NavLink >Shopping Basket</NavLink> : null } */}
-      <NavLink 
-        exact
-        to='/customer' 
-        activeStyle={{
-          fontWeight: "bold",
-          color: "red"
-        }}
-      >Customer</NavLink>
+    <div className='navbar' >
+      <div className="nav-div list">
+        <NavLink 
+          exact
+          to='/customer/markets'
+          activeStyle={{
+            fontWeight: "bold",
+            color: "red"
+          }}
+        ><h4>Market List</h4></NavLink>
+      </div>
+      <div className="nav-div market">
+        <Route path='/market/:id' render={props => (
+          <Link to={'/market/' + props.match.params.id} ><h2>{props.match.params.id}</h2></Link>
+        )} />
+        <Route path='/trader/:id' render={props => (
+          <Link to={'/market/' + 'balls'} ><h2>{props.match.params.id}</h2></Link>
+        )} />
+      </div>
+      <div className="nav-div account">
         <button 
-          className="SignOut"
-          onClick={() => localStorage.clear()}
-        >
-          <Link to='/customer/login' >
-            SignOut
-          </Link>
+            className="SignOut"
+            onClick={() => localStorage.clear()}
+            >
+            <Link to='/customer/login' >
+              SignOut
+            </Link>
         </button>
-    </nav>
+      </div>
+    </div>
   );
 };
 
