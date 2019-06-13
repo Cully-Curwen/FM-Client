@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery } from 'react-apollo-hooks';
 import { MARKET_DETAILS_QUERY } from '../graphql';
-import TraderCard from './TraderCard';
+import TraderTile from './TraderTile';
 
 function Market(props) {
   const [slide, setSlide] = useState('info');
@@ -34,7 +34,7 @@ function Market(props) {
         return (
           <div className="trader-cards">
             {traders.map(trader => 
-              <TraderCard key={trader.id} traderCard={trader} {...props} />  
+              <TraderTile key={trader.id} traderCard={trader} {...props} />  
             )}
           </div>
         );

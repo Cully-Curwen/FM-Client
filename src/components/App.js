@@ -9,6 +9,7 @@ import NavBar from "./NavBar";
 import LoginAndRegister from './LoginAndRegister';
 import Markets from './Markets';
 import Market from './Market';
+import TraderCard from './TraderCard';
 
 function App() {
   const authorized = () => {
@@ -78,7 +79,7 @@ function App() {
               handleSubmitState={handleMarketAdminLoginAndRegister}
             />} 
           />
-          <Route path='/market/:id' component={props => <Market {...props} />} />
+          <Route path='/trader/:id' component={props => <TraderCard {...props} />} />
           <Route path='/trader_admin/login' component={props => 
           <LoginAndRegister 
             {...props} 

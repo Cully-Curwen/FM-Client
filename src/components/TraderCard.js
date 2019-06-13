@@ -1,19 +1,60 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useQuery } from 'react-apollo-hooks';
+import { TRADER_CARD_DETAILS_QUERY } from '../graphql';
 
 function TraderCard(props) {
-  const { id, admins, name, blurb, imgUrl, links, produceTags } = props.traderCard;
+  const [slide, setSlide] = useState('info');
   
+  const { data, error, loading } = useQuery(TRADER_CARD_DETAILS_QUERY, {variables: { traderCardId: props.match.params.id}});
+  if (loading) {
+    return <div>Loading...</div>;
+  };
+  if (error) {
+    return <div>Error! {error.message}</div>
+  };
+  const { id, name, blurb, imgUrl, links, produceTags, inventory } = data.traderCardDetails;
+  
+  const displayLogic = () => {
+    switch (slide) {
+      case 'info':
+        return (
+          <div className="market-info">
+            <img src={imgUrl} alt="of Market"/>
+            <h3>{name}</h3>
+            <p>{produceTags.join(', ')}</p>
+            <p>{blurb}</p>
+            <ul>{Object.keys(links).map(key => <li key={key} >{key + ': ' + links[key]}</li>)}</ul>
+          </div>
+        );
+      case 'traderCards':
+        return (
+          <div className="trader-cards">
+            {inventory.map(item => <li key={item.id} >{item.name}</li>
+              // <Item key={item.id} item={item} {...props} />  
+            )}
+          </div>
+        );
+      default:
+        break;
+    }
+  };
+
   return (
-    <Link to={'/trader/' + id} >
-      <div className="trader-card">
-        <img src={imgUrl} alt="Trader Card Img"/>
-        <h3>{name}</h3>
-        <div>{produceTags.map((tag, index)=> <div key={index}>{tag}</div>)}</div>
-        <p>{blurb}</p>
-        <p>{id}</p>
+    <div className="trader-card">
+      <div className="slide-select-container">
+        <button 
+          className="slide-select-btn"
+          onClick={() => setSlide('info')}
+        >Info</button>
+        <button 
+          className="slide-select-btn"
+          onClick={() => setSlide('traderCards')}
+        >Products</button>
       </div>
-    </Link>
+      <div className="trader-card-container">
+        {displayLogic()}
+      </div>
+    </div>
   );
 };
 

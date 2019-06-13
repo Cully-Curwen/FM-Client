@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 // import { Switch, Route, Redirect } from 'react-router-dom';
 import { useQuery } from 'react-apollo-hooks';
-import MarketCard from './MarketCard';
-
-import { MARKET_LIST_QUERY } from '../graphql'
+import MarketTile from './MarketTile';
+import { MARKET_LIST_QUERY } from '../graphql';
 
 function Markets(props) {
   const [selectedMarket, setSelectedMarket] = useState({});
@@ -22,7 +21,7 @@ function Markets(props) {
         ? 
         :  */}
       { data.marketsList.map(market => 
-          <MarketCard key={market.id} market={market} />
+          <MarketTile key={market.id} market={market} />
         )
       }
     </div>
