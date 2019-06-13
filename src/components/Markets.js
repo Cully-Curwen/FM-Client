@@ -6,10 +6,7 @@ import { MARKET_LIST_QUERY } from '../graphql-types';
 
 function Markets(props) {
 
-  const { data, error, loading } = useQuery(
-    MARKET_LIST_QUERY,
-    {fetchPolicy: 'cache-and-network'}
-  );
+  const { data, error, loading } = useQuery( MARKET_LIST_QUERY, );
   if (loading) {
     return <div>Loading...</div>;
   };
@@ -17,12 +14,15 @@ function Markets(props) {
     return <div>Error! {error.message}</div>
   };
 
+  const renderMarkets = () => {
+    return data.marketsList.map(market => 
+      <MarketTile key={market.id} market={market} />
+    )
+  };
+
   return (
     <div className="markets">
-      { data.marketsList.map(market => 
-          <MarketTile key={market.id} market={market} />
-        )
-      }
+      {renderMarkets()}
     </div>
   );
 };

@@ -6,6 +6,7 @@ import { useQuery } from 'react-apollo-hooks';
 import { CUSTOMER_DATA_QUERY } from '../../graphql-types';
 import { CustomerAuthorization, MarketAdminAuthorization, TraderAdminAuthorization } from '../../utils';
 import AccountMenu from "./AccountMenu";
+import MarketName from './MarketName'
 
 function NavBar(props) {
   
@@ -37,12 +38,8 @@ function NavBar(props) {
         ><h4>Market List</h4></NavLink>
       </div>
       <div className="nav-div market">
-        <Route path='/market/:id' render={props => (
-          <Link to={'/market/' + props.match.params.id} ><h2>{props.match.params.id}</h2></Link>
-        )} />
-        <Route path='/trader/:id' render={props => (
-          <Link to={'/market/' + 'balls'} ><h2>{props.match.params.id}</h2></Link>
-        )} />
+        <Route path='/market/:id' render={props => <MarketName {...props} market={true} />} />
+        <Route path='/trader/:id' render={props => <MarketName {...props} market={false} />} />
       </div>
       <div className="nav-div account">
         {authorized()}

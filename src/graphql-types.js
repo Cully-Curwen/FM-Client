@@ -85,6 +85,9 @@ export const TRADER_CARD_DETAILS_QUERY = gql`
     traderCardDetails(traderCardId: $traderCardId) {
       id
       admins
+      market {
+        id
+      }
       name
       blurb
       imgUrl
@@ -98,6 +101,27 @@ export const TRADER_CARD_DETAILS_QUERY = gql`
         description
         stock
         price
+      }
+    }
+  }
+`;
+
+export const MARKET_NAME_QUERY = gql`
+  query marketDetails($marketId: ID!) {
+    marketDetails(marketId: $marketId) {
+      id
+      name
+    }
+  }
+`;
+
+export const TRADER_MARKET_NAME_QUERY = gql`
+  query traderCardDetails($traderCardId: ID!) {
+    traderCardDetails(traderCardId: $traderCardId) {
+      id
+      market {
+        id
+        name
       }
     }
   }
