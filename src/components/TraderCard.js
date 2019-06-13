@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery } from 'react-apollo-hooks';
 import { TRADER_CARD_DETAILS_QUERY } from '../graphql';
+import Item from './Item';
 
 function TraderCard(props) {
   const [slide, setSlide] = useState('info');
@@ -29,8 +30,8 @@ function TraderCard(props) {
       case 'traderCards':
         return (
           <div className="trader-cards">
-            {inventory.map(item => <li key={item.id} >{item.name}</li>
-              // <Item key={item.id} item={item} {...props} />  
+            {inventory.map(item => 
+              <Item key={item.id} item={item} {...props} />  
             )}
           </div>
         );
