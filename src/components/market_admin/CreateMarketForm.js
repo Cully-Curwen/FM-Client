@@ -9,7 +9,7 @@ function CreateMarketForm(props) {
   const [address, setAddress] = useState('');
   const [longitude, setLongitude] = useState(0.0);
   const [latitude, setLatitude] = useState(0.0);
-  const geoLocation = {type: 'point', coordinates: [Number(longitude), Number(latitude)]}
+  const geoLocation = {type: 'point', coordinates: [Number(longitude), Number(latitude)]};
   const [directions, setDirections] = useState('');
   const [imgUrl, setImgUrl] = useState('');
   const [openTime, setOpenTime] = useState('');

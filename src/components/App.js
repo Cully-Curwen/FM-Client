@@ -8,6 +8,7 @@ import Markets from './Markets';
 import Market from './Market';
 import TraderCard from './TraderCard';
 import MarketAdminDashboard from './market_admin/MarketAdminDashboard';
+import TraderAdminDashboard from './trader_admin/TraderAdminDashboard';
 
 function App(props) {
   const authorized = () => {
@@ -71,6 +72,9 @@ function App(props) {
           />
           <Route path="/market_admin" component={props => 
             <MarketAdminDashboard {...props} />
+          } />
+          <Route path='/trader_admin' component={props =>
+            <TraderAdminDashboard />
           } />
           <Route path="/" component={() => authorized()} />
           <Redirect to='/' />

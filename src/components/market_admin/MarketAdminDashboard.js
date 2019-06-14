@@ -4,7 +4,7 @@ import { MarketAdminAuthorization } from '../../utils';
 import { Query } from "react-apollo";
 import { MARKET_ADMIN_DATA_QUERY } from '../../graphql-types';
 import AdminMarketTile from './AdminMarketTile';
-import CreateMarketForm from './CreateMarketForm'
+import CreateMarketForm from './CreateMarketForm';
 import '../../styling/MarketTile.css';
 
 function MarketAdminDashboard(props) {
