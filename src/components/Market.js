@@ -9,13 +9,9 @@ function Market(props) {
 
   const { data, error, loading } = useQuery(MARKET_DETAILS_QUERY, {variables: { marketId: props.match.params.id}});
   
-  if (loading) {
-    return <div>Loading...</div>;
-  };
+  if (loading) { return <div>Loading...</div>; };
   
-  if (error) {
-    return <div>Error! {error.message}</div>
-  };
+  if (error) { return <div>Error! {error.message}</div> };
   
   const { name, blurb, address, geoLocation, directions, imgUrl, openHours, traders } = data.marketDetails;
   

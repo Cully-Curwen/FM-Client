@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../styling/MarketTile.css';
+import '../../styling/MarketTile.css';
 
-function MarketTile(props) {
+function AdminMarketTile(props) {
   const { id, name, blurb, address, geoLocation, directions, imgUrl, openHours } = props.market;
   
   return (
-    <Link to={'/market/' + id } >
+    <Link to={'/market_admin/market/' + id } >
       <div className="market-tile" >
         <div className="img">
           <img src={imgUrl} alt="Market Tile Img" />
@@ -18,4 +18,4 @@ function MarketTile(props) {
   );
 };
 
-export default MarketTile;
+export default AdminMarketTile;

@@ -9,6 +9,7 @@ import Market from './Market';
 import TraderCard from './TraderCard';
 import { useQuery } from 'react-apollo-hooks';
 import { CUSTOMER_DATA_QUERY } from '../graphql-types';
+import MarketAdminDashboard from './market_admin/MarketAdminDashboard';
 
 function App(props) {
 
@@ -33,15 +34,15 @@ function App(props) {
               {...props} 
               userType={'customer'} 
               formLogin={true} 
-            />} 
-          />
+            />
+          } />
           <Route path='/customer/register' component={props => 
             <LoginAndRegister 
               {...props} 
               userType={'customer'} 
               formLogin={false} 
-            />} 
-          />
+            />
+          } />
           <Route path='/markets' component={props => <Markets {...props} />} />
           <Route path='/market/:id' component={props => <Market {...props} />} />
           <Route path='/market_admin/login' component={props => 
@@ -49,33 +50,33 @@ function App(props) {
               {...props} 
               userType={'market_admin'} 
               formLogin={true} 
-            />} 
-          />
+            />
+          } />
           <Route path='/market_admin/register' component={props => 
             <LoginAndRegister 
               {...props} 
               userType={'market_admin'} 
               formLogin={false} 
-            />} 
-          />
+            />
+          } />
           <Route path='/trader/:id' component={props => <TraderCard {...props} />} />
           <Route path='/trader_admin/login' component={props => 
-          <LoginAndRegister 
-            {...props} 
-            userType={'trader_admin'} 
-            formLogin={true} 
-          />}
-        />
-        <Route path='/trader_admin/register' component={props => 
-          <LoginAndRegister 
-            {...props} 
-            userType={'trader_admin'} 
-            formLogin={false} 
-          />} 
-        />
-          {/* <Route path="/customer" component={Customer} /> */}
-          {/* <Route path="/market_admin" component={MarketAdmin} /> */}
-          {/* <Route path="/trader_admin" component={TraderAdmin} /> */}
+            <LoginAndRegister 
+              {...props} 
+              userType={'trader_admin'} 
+              formLogin={true} 
+            /> 
+          } />
+          <Route path='/trader_admin/register' component={props => 
+            <LoginAndRegister 
+              {...props} 
+              userType={'trader_admin'} 
+              formLogin={false} 
+            />} 
+          />
+          <Route path="/market_admin" component={props => 
+            <MarketAdminDashboard {...props} />
+          } />
           <Route path="/" component={() => authorized()} />
           <Redirect to='/' />
           <Route component={props => <h1>404 - Not Found</h1>}/>

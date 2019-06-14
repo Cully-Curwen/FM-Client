@@ -9,15 +9,27 @@ import { ApolloProvider } from 'react-apollo-hooks';
 import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
+import { setContext } from 'apollo-link-context';
+import { CustomerAuthorization, TraderAdminAuthorization, MarketAdminAuthorization, } from "./utils";
 
-const cache = new InMemoryCache();
-const link = new HttpLink({
-  uri: 'http://localhost:4000/'
-})
+const httplink = new HttpLink({
+  uri: 'http://localhost:4000/',
+});
+
+const authLink = setContext((_, { headers }) => {
+  return {
+    headers: {
+      ...headers,
+      CustomerAuthorization: CustomerAuthorization(),
+      TraderAdminAuthorization: TraderAdminAuthorization(),
+      MarketAdminAuthorization: MarketAdminAuthorization(),
+    }
+  }
+});
 
 const client = new ApolloClient({
-  link,
-  cache,
+  link: authLink.concat(httplink),
+  cache: new InMemoryCache(),
 });
 
 ReactDOM.render(
