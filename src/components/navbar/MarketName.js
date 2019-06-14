@@ -25,7 +25,6 @@ function MarketName(props) {
   if (props.pathSeg === 'market') return (
     <Query query={MARKET_NAME_QUERY} variables={{ marketId: id }} >
       {({ data, loading, error }) => {
-        console.log(data)
         if (loading) return <></>;
         if (error) return <></>;
         const name = data.marketDetails.name;
