@@ -25,7 +25,7 @@ const authLink = setContext((_, { headers }) => {
       MarketAdminAuthorization: MarketAdminAuthorization(),
     }
   }
-})
+});
 
 const client = new ApolloClient({
   link: authLink.concat(httplink),

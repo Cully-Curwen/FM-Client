@@ -8,18 +8,15 @@ import CreateMarketForm from './CreateMarketForm'
 import '../../styling/MarketTile.css';
 
 function MarketAdminDashboard(props) {
-  const { data, error, loading } = useQuery(MARKET_ADMIN_DATA_QUERY);
+  const { data, error, loading } = useQuery(MARKET_ADMIN_DATA_QUERY, {});
   const [newMarketForm, setNewMarketForm] = useState(false);
   
   if (!MarketAdminAuthorization()) return <Redirect to='/market_admin/login' />;
 
   if (loading) return <div>Loading...</div>;
   
-  if (error) { return <div>Error! {error.message}</div> };
+  if (error) return <div>Error! {error.message}</div>;
 
-  console.log('data.administeredMarkets: ', data.administeredMarkets);
-  console.log('data.marketAdminData: ', data.marketAdminData)
-  
   // const { name, blurb, address, geoLocation, directions, imgUrl, openHours, traders } = data.administeredMarkets;
   // const { id, email, firstName, lastName } = data.marketAdminData;
   
@@ -31,7 +28,7 @@ function MarketAdminDashboard(props) {
 
   if(newMarketForm) return (
     <div className='market-admin-dashboard dashboard'>
-      <CreateMarketForm />
+      <CreateMarketForm setNewMarketForm={setNewMarketForm} />
     </div>
   );
   

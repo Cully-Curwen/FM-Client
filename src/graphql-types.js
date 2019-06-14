@@ -28,12 +28,6 @@ export const CUSTOMER_DATA_QUERY = gql`
 
 export const MARKET_ADMIN_DATA_QUERY = gql`
   query {
-    marketAdminData {
-      id
-      email
-      firstName
-      lastName
-    }
     administeredMarkets {
       id
       name
@@ -467,6 +461,55 @@ export const TRADER_ADMIN_UPDATE_MUTATION = gql`
       email
       firstName
       lastName
+    }
+  }
+`;
+
+export const MARKET_CREATE_MUTATION = gql`
+  mutation marketCreate(
+    $name: String!, 
+    $blurb: String!, 
+    $address: String, 
+    $geoLocation: GeoPointInput!, 
+    $directions: String,
+    $imgUrl: String,
+    $openHours: OpenHoursInput!,
+  ) {
+    marketCreate(
+      name: $name,
+      blurb: $blurb,
+      address: $address,
+      geoLocation: $geoLocation,
+      directions: $directions,
+      imgUrl: $imgUrl,
+      openHours: $openHours,
+    ) {
+      id
+      admins
+      name
+      blurb
+      address
+      geoLocation {
+        coordinates
+      }
+      directions
+      imgUrl
+      openHours {
+        openTime
+        closeTime
+        tradingDay
+      }
+      traders {
+        id
+        admins
+        name
+        blurb
+        imgUrl
+        links {
+          website
+        }
+        produceTags
+      }
     }
   }
 `;

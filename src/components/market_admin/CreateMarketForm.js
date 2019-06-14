@@ -1,24 +1,30 @@
+import { useMutation } from 'react-apollo-hooks';
 import React, { useState } from 'react';
+import { MARKET_CREATE_MUTATION } from '../../graphql-types';
 
 function CreateMarketForm(props) {
 
   const [name, setName] = useState('');
   const [blurb, setBlurb] = useState('');
   const [address, setAddress] = useState('');
-  const [longatude, setLongatude] = useState(0.0);
-  const [latatude, setLatatude] = useState(0.0);
-  const geoLocation = {type: 'point', coordinates: [longatude, latatude]}
+  const [longitude, setLongitude] = useState(0.0);
+  const [latitude, setLatitude] = useState(0.0);
+  const geoLocation = {type: 'point', coordinates: [Number(longitude), Number(latitude)]}
   const [directions, setDirections] = useState('');
   const [imgUrl, setImgUrl] = useState('');
   const [openTime, setOpenTime] = useState('');
   const [closeTime, setCloseTime] = useState('');
   const [tradingDay, setTradingDay] = useState('');
   const openHours = { openTime, closeTime, tradingDay, };
-
+  
+  const marketCreate = useMutation(MARKET_CREATE_MUTATION, {
+    variables: { name, blurb, address, geoLocation, directions, imgUrl, openHours },
+  });
 
   const handleSubmit = event => {
     event.preventDefault();
-
+    marketCreate();
+    props.setNewMarketForm(false);
   };
 
   return (
@@ -31,12 +37,14 @@ function CreateMarketForm(props) {
           value={name} 
           onChange={event => setName(event.target.value)} 
         />
+        <br/>
         <label htmlFor="blurb">Information about the market: </label>
         <textarea 
           name="blurb" 
           value={blurb}
           onChange={event => setBlurb(event.target.value)}
         />
+        <br/>
         <label htmlFor="imgUrl">Image Url: </label>
         <input 
           type="text" 
@@ -44,6 +52,7 @@ function CreateMarketForm(props) {
           value={imgUrl}
           onChange={event => setImgUrl(event.target.value)}
         />
+        <br/>
         <label htmlFor="openTime">Opening Time: </label>
         <input 
           type="time" 
@@ -51,6 +60,7 @@ function CreateMarketForm(props) {
           value={openTime}
           onChange={event => setOpenTime(event.target.value)}
         />
+        <br/>
         <label htmlFor="closeTime">Closing Time: </label>
         <input 
           type="time" 
@@ -58,11 +68,8 @@ function CreateMarketForm(props) {
           value={closeTime}
           onChange={event => setCloseTime(event.target.value)}
         />
+        <br/>
         <label htmlFor="tradingDay">Trading Day: </label>
-        <input 
-          type="text" 
-          name="tradingDay"
-        />
         <select name="tradingDay" onSelect={setTradingDay}>
           <option value="Saturday">Saturday</option>
           <option value="Sunday">Sunday</option>
@@ -72,6 +79,7 @@ function CreateMarketForm(props) {
           <option value="Thursday">Thursday</option>
           <option value="Friday">Friday</option>
         </select>
+        <br/>
         <label htmlFor="address">Address: </label>
         <input 
           type="text" 
@@ -79,6 +87,7 @@ function CreateMarketForm(props) {
           value={address}
           onChange={event => setAddress(event.target.value)}
         />
+        <br/>
         <label htmlFor="directions">Directions: </label>
         <input 
           type="text" 
@@ -86,21 +95,25 @@ function CreateMarketForm(props) {
           value={directions}
           onChange={event => setDirections(event.target.value)}
         />
+        <br/>
         <label htmlFor="geoLocation">GeoLocation: </label>
-        <label htmlFor="longatude">Longatude: </label>
+        <br/>
+        <label htmlFor="longitude">Longitude: </label>
         <input 
           type="number" 
-          name="longatude"
-          value={longatude}
-          onChange={event => setLongatude(event.target.value)} 
+          name="longitude"
+          value={longitude}
+          onChange={event => setLongitude(event.target.value)} 
         />
-        <label htmlFor="latatude">latatude: </label>
+        <br/>
+        <label htmlFor="latitude">Latitude: </label>
         <input 
           type="number" 
-          name="latatude"
-          value={latatude}
-          onChange={event => setLatatude(event.target.value)} 
+          name="latitude"
+          value={latitude}
+          onChange={event => setLatitude(event.target.value)} 
         />
+        <br/>
         <input type="submit" value="Create"/>
       </form>
     </div>
