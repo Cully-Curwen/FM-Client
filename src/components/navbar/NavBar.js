@@ -34,8 +34,8 @@ function NavBar(props) {
         ><h4>Market List</h4></NavLink>
       </div>
       <div className="nav-div market">
-        <Route path='/market/:id' render={props => <MarketName {...props} market={true} />} />
-        <Route path='/trader/:id' render={props => <MarketName {...props} market={false} />} />
+        <Route path='/market/:id' render={props => <MarketName {...props} pathSeg={'market'} />} />
+        <Route path='/trader/:id' render={props => <MarketName {...props} pathSeg={'trader'} />} />
       </div>
       <div className="nav-div account">
         {authorized()}
