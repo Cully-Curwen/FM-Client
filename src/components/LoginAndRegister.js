@@ -14,7 +14,7 @@ import {
 } from '../graphql-types'
 
 function LoginAndRegister(props) {
-  const { userType, formLogin, handleSubmitState } = props;
+  const { userType, formLogin } = props;
   const customer = "customer";
   const traderAdmin = "trader_admin";
   const marketAdmin = "market_admin";
@@ -26,7 +26,7 @@ function LoginAndRegister(props) {
 
   const customerRegister = useMutation(CUSTOMER_REGISTER_MUTATION, {
     update: (proxy, mutationResult) => {
-      const { token, customer } = mutationResult.data.customerRegister;
+      const { token } = mutationResult.data.customerRegister;
       localStorage[CustomerToken] = token;
     },
     variables: { email, firstName, lastName, password }
@@ -34,7 +34,7 @@ function LoginAndRegister(props) {
 
   const customerLogin = useMutation(CUSTOMER_LOGIN_MUTATION, {
     update: (proxy, mutationResult) => {
-      const { token, customer } = mutationResult.data.customerLogin;
+      const { token } = mutationResult.data.customerLogin;
       localStorage[CustomerToken] = token;
     },
     variables: { email, password },
@@ -42,7 +42,7 @@ function LoginAndRegister(props) {
 
   const marketAdminRegister = useMutation(MARKET_ADMIN_REGISTER_MUTATION, {
     update: (proxy, mutationResult) => {
-      const { token, marketAdmin, markets } = mutationResult.data.marketAdminRegister;
+      const { token } = mutationResult.data.marketAdminRegister;
       localStorage[MarketToken] = token;
     },
     variables: { email, firstName, lastName, password }
@@ -50,7 +50,7 @@ function LoginAndRegister(props) {
 
   const marketAdminLogin = useMutation(MARKET_ADMIN_LOGIN_MUTATION, {
     update: (proxy, mutationResult) => {
-      const { token, marketAdmin, markets } = mutationResult.data.marketAdminLogin;
+      const { token } = mutationResult.data.marketAdminLogin;
       localStorage[MarketToken] = token;
     },
     variables: { email, password }
@@ -58,7 +58,7 @@ function LoginAndRegister(props) {
 
   const traderAdminRegister = useMutation(TRADER_ADMIN_REGISTER_MUTATION, {
     update: (proxy, mutationResult) => {
-      const { token, traderAdmin, traderCards } = mutationResult.data.traderAdminRegister;
+      const { token } = mutationResult.data.traderAdminRegister;
       localStorage[TraderToken] = token;
     },
     variables: { email, firstName, lastName, password }
@@ -66,7 +66,7 @@ function LoginAndRegister(props) {
 
   const traderAdminLogin = useMutation(TRADER_ADMIN_LOGIN_MUTATION, {
     update: (proxy, mutationResult) => {
-      const { token, traderAdmin, traderCards } = mutationResult.data.traderAdminLogin;
+      const { token } = mutationResult.data.traderAdminLogin;
       localStorage[TraderToken] = token;
     },
     variables: { email, password }

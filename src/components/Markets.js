@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-// import { Switch, Route, Redirect } from 'react-router-dom';
+import React, {  } from 'react';
 import { useQuery } from 'react-apollo-hooks';
 import MarketTile from './MarketTile';
 import { MARKET_LIST_QUERY } from '../graphql-types';

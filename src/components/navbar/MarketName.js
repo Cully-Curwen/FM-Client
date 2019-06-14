@@ -11,6 +11,9 @@ function MarketName(props) {
   if (loading) {
     return <div></div>;
   };
+  if (error) {
+    return <div></div>;
+  };
 
   const name = props.market ? data.marketDetails.name : data.traderCardDetails.market.name;
   const id = props.market ? data.marketDetails.id : data.traderCardDetails.market.id;

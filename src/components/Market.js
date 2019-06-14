@@ -13,7 +13,8 @@ function Market(props) {
   
   if (error) { return <div>Error! {error.message}</div> };
   
-  const { name, blurb, address, geoLocation, directions, imgUrl, openHours, traders } = data.marketDetails;
+  // const { name, blurb, address, geoLocation, directions, imgUrl, openHours, traders } = data.marketDetails;
+  const { name, blurb, address, geoLocation, imgUrl, traders } = data.marketDetails;
   
   const displayLogic = () => {
     switch (slide) {

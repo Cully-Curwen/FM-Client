@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import '../../styling/MarketTile.css';
 
 function AdminMarketTile(props) {
-  const { id, name, blurb, address, geoLocation, directions, imgUrl, openHours } = props.market;
+  // const { id, name, blurb, address, geoLocation, directions, imgUrl, openHours } = props.market;
+  const { id, name, blurb, imgUrl } = props.market;
   
   return (
     <Link to={'/market_admin/market/' + id } >
