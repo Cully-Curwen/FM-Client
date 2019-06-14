@@ -4,11 +4,11 @@ import { TraderAdminAuthorization } from '../../utils';
 import { Query } from "react-apollo";
 import { TRADER_ADMIN_DATA_QUERY } from '../../graphql-types';
 import AdminTraderCardTile from './AdminTraderCardTile';
-// import CreateMarketForm from './CreateMarketForm';
+import CreateTraderCardForm from './CreateTraderCardForm';
 import '../../styling/TraderTile.css';
 
 function TraderAdminDashboard(props) {
-  const [newMarketForm, setNewMarketForm] = useState(false);
+  const [newTraderForm, setNewTraderForm] = useState(false);
   
   if (!TraderAdminAuthorization()) return <Redirect to='/trader_admin/login' />;
 
@@ -25,16 +25,16 @@ function TraderAdminDashboard(props) {
     </Query>
   );
 
-  if(newMarketForm) return (
+  if(newTraderForm) return (
     <div className='market-admin-dashboard dashboard'>
-      {/* <CreateMarketForm setNewMarketForm={setNewMarketForm} /> */}
+      <CreateTraderCardForm setNewTraderForm={setNewTraderForm} />
     </div>
   );
   
   return (
     <div className="trader-admin-dashboard dashboard">
       {renderTraders()}
-      <div className="trader-tile add-new" onClick={() => setNewMarketForm(true)} >
+      <div className="trader-tile add-new" onClick={() => setNewTraderForm(true)} >
         <h1>Create New</h1>
       </div>
     </div>

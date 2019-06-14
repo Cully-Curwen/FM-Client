@@ -529,3 +529,38 @@ export const MARKET_CREATE_MUTATION = gql`
     }
   }
 `;
+
+export const TRADER_CARD_CREATE_MUTATION = gql`
+  mutation traderCardCreate(
+    $name: String!,
+    $blurb: String!,
+    $imgUrl: String,
+    $links: UrlLinksInput,
+    $produceTags: [String!]!,
+  ) {
+    traderCardCreate(
+    name: $name,
+    blurb: $blurb,
+    imgUrl: $imgUrl,
+    links: $links,
+    produceTags: $produceTags,
+  ) {
+      id
+      admins
+      name
+      blurb
+      imgUrl
+      links {
+        website
+      }
+      produceTags
+      inventory {
+        id
+        name
+        description
+        stock
+        price
+      }
+    }
+  }
+`;
