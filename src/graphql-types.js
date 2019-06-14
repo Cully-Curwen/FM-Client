@@ -50,11 +50,26 @@ export const MARKET_ADMIN_DATA_QUERY = gql`
 
 export const TRADER_ADMIN_DATA_QUERY = gql`
   query {
-    traderAdminData {
+    administeredTraders {
       id
-      email
-      firstName
-      lastName
+      admins
+      market {
+        id
+      }
+      name
+      blurb
+      imgUrl
+      links {
+        website
+      }
+      produceTags
+      inventory {
+        id
+        name
+        description
+        stock
+        price
+      }
     }
   }
 `;
