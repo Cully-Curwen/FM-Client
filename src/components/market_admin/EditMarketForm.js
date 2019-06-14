@@ -1,35 +1,30 @@
 import React, { useState } from 'react';
-import { MARKET_CREATE_MUTATION, MARKET_ADMIN_DATA_QUERY } from '../../graphql-types';
+import { MARKET_UPDATE_MUTATION,  } from '../../graphql-types';
 import { Mutation } from 'react-apollo';
 import { WGS84_Bounds as GeoLocationBounds } from '../../constants.js'
 
-function CreateMarketForm(props) {
+function EditMarketForm(props) {
   const { step, lon, lat } = GeoLocationBounds;
-
-  const [name, setName] = useState('');
-  const [blurb, setBlurb] = useState('');
-  const [address, setAddress] = useState('');
-  const [longitude, setLongitude] = useState(0.0000);
-  const [latitude, setLatitude] = useState(0.0000);
+  const { market } = props;
+  
+  const id = market.id;
+  const [name, setName] = useState(market.name);
+  const [blurb, setBlurb] = useState(market.blurb);
+  const [address, setAddress] = useState(market.address);
+  const [longitude, setLongitude] = useState(market.geoLocation.coordinates[0]);
+  const [latitude, setLatitude] = useState(market.geoLocation.coordinates[1]);
   const geoLocation = {type: 'point', coordinates: [Number(longitude), Number(latitude)]};
-  const [directions, setDirections] = useState('');
-  const [imgUrl, setImgUrl] = useState('');
-  const [openTime, setOpenTime] = useState('');
-  const [closeTime, setCloseTime] = useState('');
-  const [tradingDay, setTradingDay] = useState('');
+  const [directions, setDirections] = useState(market.directions);
+  const [imgUrl, setImgUrl] = useState(market.imgUrl);
+  const [openTime, setOpenTime] = useState(market.openHours.openTime);
+  const [closeTime, setCloseTime] = useState(market.openHours.closeTime);
+  const [tradingDay, setTradingDay] = useState(market.openHours.tradingDay);
   const openHours = { openTime, closeTime, tradingDay, };
 
   return (
     <Mutation 
-      mutation={MARKET_CREATE_MUTATION}
-      update={(cache, { data: { marketCreate } }) => {
-        const { administeredMarkets } = cache.readQuery({ query: MARKET_ADMIN_DATA_QUERY });
-        cache.writeQuery({
-          query: MARKET_ADMIN_DATA_QUERY,
-          data: { administeredMarkets: administeredMarkets.concat([marketCreate]) },
-        });
-      }}
-      onCompleted={() => props.setNewMarketForm(false)} 
+      mutation={MARKET_UPDATE_MUTATION}
+      onCompleted={() => props.setEditMarketForm(false)} 
     >
       {(marketCreate, { loading, error }) => (
         <div className="create-market-form form">
@@ -37,7 +32,7 @@ function CreateMarketForm(props) {
           <form onSubmit={event => {
               event.preventDefault();
               marketCreate({
-                variables: { name, blurb, address, geoLocation, directions, imgUrl, openHours }
+                variables: { id, name, blurb, address, geoLocation, directions, imgUrl, openHours }
               });
               event.target.reset();
             }} 
@@ -45,8 +40,7 @@ function CreateMarketForm(props) {
             <label htmlFor="name">Market Name: </label>
             <input 
               type="text" 
-              name="name"
-              required
+              name="name" 
               value={name} 
               onChange={event => setName(event.target.value)} 
               />
@@ -54,7 +48,6 @@ function CreateMarketForm(props) {
             <label htmlFor="blurb">Information about the market: </label>
             <textarea 
               name="blurb" 
-              required
               value={blurb}
               onChange={event => setBlurb(event.target.value)}
               />
@@ -71,7 +64,6 @@ function CreateMarketForm(props) {
             <input 
               type="time" 
               name="openTime"
-              required
               value={openTime}
               onChange={event => setOpenTime(event.target.value)}
               />
@@ -80,13 +72,12 @@ function CreateMarketForm(props) {
             <input 
               type="time" 
               name="closeTime" 
-              required
               value={closeTime}
               onChange={event => setCloseTime(event.target.value)}
               />
             <br/>
             <label htmlFor="tradingDay">Trading Day: </label>
-            <select name="tradingDay" value={tradingDay} onChange={event => setTradingDay(event.target.value)}>
+            <select name="tradingDay" onSelect={setTradingDay}>
               <option value="Saturday">Saturday</option>
               <option value="Sunday">Sunday</option>
               <option value="Monday">Monday</option>
@@ -121,7 +112,6 @@ function CreateMarketForm(props) {
               step={step}
               min={lon.min}
               max={lon.max}
-              required
               value={longitude}
               onChange={event => setLongitude(event.target.value)} 
               />
@@ -133,12 +123,11 @@ function CreateMarketForm(props) {
               step={step}
               min={lat.min}
               max={lat.max}
-              required
               value={latitude}
               onChange={event => setLatitude(event.target.value)} 
               />
             <br/>
-            <input type="submit" value="Create"/>
+            <input type="submit" value="Save Changes"/>
           </form>
         </div>
       )}
@@ -146,4 +135,4 @@ function CreateMarketForm(props) {
   );
 };
 
-export default CreateMarketForm;
+export default EditMarketForm;
