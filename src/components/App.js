@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../styling/App.css';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { CustomerAuthorization, MarketAdminAuthorization, TraderAdminAuthorization } from '../utils';
@@ -7,14 +7,9 @@ import LoginAndRegister from './LoginAndRegister';
 import Markets from './Markets';
 import Market from './Market';
 import TraderCard from './TraderCard';
-import { useQuery } from 'react-apollo-hooks';
-import { CUSTOMER_DATA_QUERY } from '../graphql-types';
 import MarketAdminDashboard from './market_admin/MarketAdminDashboard';
 
 function App(props) {
-
-  const { data, error, loading} = useQuery(CUSTOMER_DATA_QUERY);
-
   const authorized = () => {
     if (CustomerAuthorization()) return <Redirect to='/markets' />
     if (MarketAdminAuthorization()) return <Redirect to='/market_admin' />

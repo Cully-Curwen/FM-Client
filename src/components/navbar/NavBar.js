@@ -1,17 +1,13 @@
 import React from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import '../../styling/NavBar.css';
 import { Route } from 'react-router-dom';
-import { useQuery } from 'react-apollo-hooks';
-import { CUSTOMER_DATA_QUERY } from '../../graphql-types';
 import { CustomerAuthorization, MarketAdminAuthorization, TraderAdminAuthorization } from '../../utils';
 import AccountMenu from "./AccountMenu";
 import MarketName from './MarketName'
 
 function NavBar(props) {
   
-  const { data, error, loading} = useQuery(CUSTOMER_DATA_QUERY);
-
   const authorized = () => {
     if (CustomerAuthorization()) return (
       <AccountMenu />
@@ -38,8 +34,8 @@ function NavBar(props) {
         ><h4>Market List</h4></NavLink>
       </div>
       <div className="nav-div market">
-        <Route path='/market/:id' render={props => <MarketName {...props} market={true} />} />
-        <Route path='/trader/:id' render={props => <MarketName {...props} market={false} />} />
+        <Route path='/market/:id' render={props => <MarketName {...props} pathSeg={'market'} />} />
+        <Route path='/trader/:id' render={props => <MarketName {...props} pathSeg={'trader'} />} />
       </div>
       <div className="nav-div account">
         {authorized()}

@@ -1,24 +1,41 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useQuery } from 'react-apollo-hooks';
 import { TRADER_MARKET_NAME_QUERY, MARKET_NAME_QUERY } from '../../graphql-types';
+import { Query } from 'react-apollo';
 
 function MarketName(props) {
-  const QUERY = props.market ? MARKET_NAME_QUERY : TRADER_MARKET_NAME_QUERY;
-  const variables = props.market ? { marketId: props.match.params.id } : { traderCardId: props.match.params.id };
-  const { data, error, loading } = useQuery(QUERY, { variables });
-  
-  if (loading) {
-    return <div></div>;
-  };
+  const id = props.match.params.id;
 
-  const name = props.market ? data.marketDetails.name : data.traderCardDetails.market.name;
-  const id = props.market ? data.marketDetails.id : data.traderCardDetails.market.id;
+  if (props.pathSeg === 'trader') return (
+    <Query query={TRADER_MARKET_NAME_QUERY} variables={{ traderCardId: id }} >
+      {({ data, loading, error }) => {
+        if (loading) return <></>;
+        if (error) return <></>;
+        const { name, id } = data.traderCardDetails.market;
 
-  return (
-    <NavLink className="market-name" to={'/market/' + id} >
-      <h3>{name}</h3>
-    </NavLink>
+        return (
+          <NavLink className="market-name" to={'/market/' + id} >
+            <h3>{name}</h3>
+          </NavLink>
+        );
+      }}
+    </Query>
+  );
+
+  if (props.pathSeg === 'market') return (
+    <Query query={MARKET_NAME_QUERY} variables={{ marketId: id }} >
+      {({ data, loading, error }) => {
+        if (loading) return <></>;
+        if (error) return <></>;
+        const name = data.marketDetails.name;
+        
+        return (
+          <NavLink className="market-name" to={'/market/' + id} >
+            <h3>{name}</h3>
+          </NavLink>
+        );
+      }}
+    </Query>
   );
 };
 

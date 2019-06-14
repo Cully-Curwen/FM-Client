@@ -19,7 +19,8 @@ function TraderCard(props) {
   if (error) {
     return <div>Error! {error.message}</div>
   };
-  const { id, name, blurb, imgUrl, links, produceTags, inventory } = data.traderCardDetails;
+  // const { id, name, blurb, imgUrl, links, produceTags, inventory } = data.traderCardDetails;
+  const { name, blurb, imgUrl, links, produceTags, inventory } = data.traderCardDetails;
   
   const displayLogic = () => {
     switch (slide) {

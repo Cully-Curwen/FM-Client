@@ -30,6 +30,7 @@ export const MARKET_ADMIN_DATA_QUERY = gql`
   query {
     administeredMarkets {
       id
+      admins
       name
       blurb
       address
