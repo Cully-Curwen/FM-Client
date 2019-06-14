@@ -530,6 +530,57 @@ export const MARKET_CREATE_MUTATION = gql`
   }
 `;
 
+export const MARKET_UPDATE_MUTATION = gql`
+  mutation marketUpdate(
+    $id: ID!,
+    $name: String, 
+    $blurb: String, 
+    $address: String, 
+    $geoLocation: GeoPointInput, 
+    $directions: String,
+    $imgUrl: String,
+    $openHours: OpenHoursInput,
+  ) {
+    marketUpdate(
+      id: $id,
+      name: $name,
+      blurb: $blurb,
+      address: $address,
+      geoLocation: $geoLocation,
+      directions: $directions,
+      imgUrl: $imgUrl,
+      openHours: $openHours,
+    ) {
+      id
+      admins
+      name
+      blurb
+      address
+      geoLocation {
+        coordinates
+      }
+      directions
+      imgUrl
+      openHours {
+        openTime
+        closeTime
+        tradingDay
+      }
+      traders {
+        id
+        admins
+        name
+        blurb
+        imgUrl
+        links {
+          website
+        }
+        produceTags
+      }
+    }
+  }
+`;
+
 export const TRADER_CARD_CREATE_MUTATION = gql`
   mutation traderCardCreate(
     $name: String!,
