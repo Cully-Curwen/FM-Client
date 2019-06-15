@@ -13,8 +13,6 @@ function MarketAdminDashboard(props) {
   const [editMarketForm, setEditMarketForm] = useState(false);
   
   const marketsList = data => {
-    // if (newMarketForm) return <CreateMarketForm setNewMarketForm={setNewMarketForm} />;
-    // if (editMarketForm) return <EditMarketForm setEditMarketForm={setEditMarketForm} market={editMarketForm} />;
     return (
       <>
         {data.administeredMarkets.map(market => 
