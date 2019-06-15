@@ -590,12 +590,49 @@ export const TRADER_CARD_CREATE_MUTATION = gql`
     $produceTags: [String!]!,
   ) {
     traderCardCreate(
-    name: $name,
-    blurb: $blurb,
-    imgUrl: $imgUrl,
-    links: $links,
-    produceTags: $produceTags,
+      name: $name,
+      blurb: $blurb,
+      imgUrl: $imgUrl,
+      links: $links,
+      produceTags: $produceTags,
+    ) {
+      id
+      admins
+      name
+      blurb
+      imgUrl
+      links {
+        website
+      }
+      produceTags
+      inventory {
+        id
+        name
+        description
+        stock
+        price
+      }
+    }
+  }
+`;
+
+export const TRADER_CARD_UPDATE_MUTATION = gql`
+  mutation traderCardUpdate(
+    $id: ID!,
+    $name: String!,
+    $blurb: String!,
+    $imgUrl: String,
+    $links: UrlLinksInput,
+    $produceTags: [String!]!,
   ) {
+    traderCardUpdate(
+      id: $id,
+      name: $name,
+      blurb: $blurb,
+      imgUrl: $imgUrl,
+      links: $links,
+      produceTags: $produceTags,
+    ) {
       id
       admins
       name

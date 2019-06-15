@@ -1,32 +1,27 @@
 import React, { useState } from 'react';
-import { TRADER_CARD_CREATE_MUTATION, TRADER_ADMIN_DATA_QUERY } from '../../graphql-types';
+import { TRADER_CARD_UPDATE_MUTATION } from '../../graphql-types';
 import { Mutation } from 'react-apollo';
 
-function CreateTraderCardForm(props) {
+function EditTraderForm(props) {
+  const { traderCard } = props;
 
-  const [name, setName] = useState('');
-  const [blurb, setBlurb] = useState('');
-  const [imgUrl, setImgUrl] = useState('');
-  const [website, setWebsite] = useState('');
-  const [email, setEmail] = useState('');
-  const [facebook, setFacebook] = useState('');
-  const [twitter, setTwitter] = useState('');
-  const [instagram, setInstagram] = useState('');
+  const id = traderCard.id;
+  const [name, setName] = useState(traderCard.name);
+  const [blurb, setBlurb] = useState(traderCard.blurb);
+  const [imgUrl, setImgUrl] = useState(traderCard.imgUrl);
+  const [website, setWebsite] = useState(traderCard.links.website);
+  const [email, setEmail] = useState(traderCard.links.email);
+  const [facebook, setFacebook] = useState(traderCard.links.facebook);
+  const [twitter, setTwitter] = useState(traderCard.links.twitter);
+  const [instagram, setInstagram] = useState(traderCard.links.instagram);
   const links = { website, email, facebook, twitter, instagram };
-  const [produceTags, setProduceTags] = useState([]);
+  const [produceTags, setProduceTags] = useState(traderCard.produceTags);
 
 
   return (
     <Mutation 
-      mutation={TRADER_CARD_CREATE_MUTATION}
-      update={(cache, { data: { traderCardCreate } }) => {
-        const { administeredTraders } = cache.readQuery({ query: TRADER_ADMIN_DATA_QUERY });
-        cache.writeQuery({
-          query: TRADER_ADMIN_DATA_QUERY,
-          data: { administeredTraders: administeredTraders.concat([traderCardCreate]) },
-        });
-      }}
-      onCompleted={() => props.setNewTraderForm(false)} 
+      mutation={TRADER_CARD_UPDATE_MUTATION}
+      onCompleted={() => props.setEditTraderForm(false)} 
     >
       {(traderCardCreate, { loading, error }) => (
         <div className="create-market-form form">
@@ -34,7 +29,7 @@ function CreateTraderCardForm(props) {
           <form onSubmit={event => {
               event.preventDefault();
               traderCardCreate({
-                variables: { name, blurb, imgUrl, links, produceTags }
+                variables: { id, name, blurb, imgUrl, links, produceTags }
               });
               event.target.reset();
             }} 
@@ -42,8 +37,7 @@ function CreateTraderCardForm(props) {
             <label htmlFor="name">Market Name: </label>
             <input 
               type="text" 
-              name="name"
-              required
+              name="name" 
               value={name} 
               onChange={event => setName(event.target.value)} 
               />
@@ -51,7 +45,6 @@ function CreateTraderCardForm(props) {
             <label htmlFor="blurb">Information about the market: </label>
             <textarea 
               name="blurb" 
-              required
               value={blurb}
               onChange={event => setBlurb(event.target.value)}
               />
@@ -110,12 +103,11 @@ function CreateTraderCardForm(props) {
             <input 
               type="text" 
               name="produceTags" 
-              required
               value={produceTags}
               onChange={event => setProduceTags([event.target.value])}
             />
             <br/>
-            <input type="submit" value="Create"/>
+            <input type="submit" value="Save Changes"/>
           </form>
         </div>
       )}
@@ -123,4 +115,4 @@ function CreateTraderCardForm(props) {
   );
 };
 
-export default CreateTraderCardForm;
+export default EditTraderForm;
