@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Query } from 'react-apollo';
 import { TRADER_CARD_DETAILS_QUERY } from '../graphql-types';
-import Item from './Item';
+import Item from './items/Item';
 
 function TraderCard(props) {
   const [slide, setSlide] = useState('info');
@@ -10,13 +10,13 @@ function TraderCard(props) {
     <Query 
       query={TRADER_CARD_DETAILS_QUERY}
       variables={{ traderCardId: props.match.params.id}}
+      fetchPolicy={'cache-and-network'}
     >
       {({ data, error, loading }) => {
         if (loading) { return <div>Loading...</div>; };
         if (error) { return <div>Error! {error.message}</div> };
         
-        // const { id, name, blurb, imgUrl, links, produceTags, inventory } = data.traderCardDetails;
-        const { name, blurb, imgUrl, links, produceTags, inventory } = data.traderCardDetails;
+        const { id, name, blurb, imgUrl, links, produceTags, inventory, market } = data.traderCardDetails;
         
         const displayLogic = () => {
           switch (slide) {
@@ -34,7 +34,13 @@ function TraderCard(props) {
               return (
                 <div className="inventory">
                   {inventory.map(item => 
-                    <Item key={item.id} item={item} {...props} />  
+                    <Item 
+                      key={item.id} 
+                      item={item} 
+                      marketId={market.id}
+                      traderCardId={id}
+                      {...props} 
+                    />  
                   )}
                 </div>
               );

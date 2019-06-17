@@ -652,3 +652,137 @@ export const TRADER_CARD_UPDATE_MUTATION = gql`
     }
   }
 `;
+
+export const ITEM_CREATE_MUTATION = gql`
+  mutation itemCreate(
+    $traderCardId: String!,
+    $name: String!,
+    $description: String!,
+    $stock: Int!,
+    $price: Int!,
+  ) {
+    itemCreate(
+      traderCardId: $traderCardId,
+      name: $name,
+      description: $description,
+      stock: $stock,
+      price: $price,
+    ) {
+      id
+      traderCardId
+      name
+      description
+      stock
+      price
+    }
+  }
+`;
+
+export const ITEM_UPDATE_MUTATION = gql`
+  mutation itemUpdate(
+    $id: ID!,
+    $name: String!,
+    $description: String!,
+    $stock: Int!,
+    $price: Int!,
+  ) {
+    itemUpdate(
+      id: $id,
+      name: $name,
+      description: $description,
+      stock: $stock,
+      price: $price,
+    ) {
+      id
+      traderCardId
+      name
+      description
+      stock
+      price
+    }
+  }
+`;
+
+export const CART_ADD_ITEM_MUTATION = gql`
+  mutation cartAddItem(
+    $marketId: String!,
+    $item: ItemsCartInput,
+  ) {
+    cartAddItem(
+      marketId: $marketId,
+      item: $item,
+    ) {
+      id
+      shoppingCarts {
+        market {
+          id
+          name
+        }
+        items {
+          traderCardId
+          itemId
+          name
+          description
+          price
+          quantity
+        }
+      }
+    }
+  }
+`;
+
+export const CART_UPDATE_ITEM_MUTATION = gql`
+  mutation cartUpdateItem(
+    $marketId: String!,
+    $item: ItemsCartInput,
+  ) {
+    cartUpdateItem(
+      marketId: $marketId,
+      item: $item,
+    ) {
+      id
+      shoppingCarts {
+        market {
+          id
+          name
+        }
+        items {
+          traderCardId
+          itemId
+          name
+          description
+          price
+          quantity
+        }
+      }
+    }
+  }
+`;
+
+export const CART_REMOVE_ITEM_MUTATION = gql`
+  mutation cartRemoveItem(
+    $marketId: String!,
+    $item: ItemsCartInput,
+  ) {
+    cartRemoveItem(
+      marketId: $marketId,
+      item: $item,
+    ) {
+      id
+      shoppingCarts {
+        market {
+          id
+          name
+        }
+        items {
+          traderCardId
+          itemId
+          name
+          description
+          price
+          quantity
+        }
+      }
+    }
+  }
+`;
