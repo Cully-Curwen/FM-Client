@@ -702,3 +702,31 @@ export const ITEM_UPDATE_MUTATION = gql`
     }
   }
 `;
+
+export const CART_ADD_ITEM_MUTATION = gql`
+  mutation cartAddItem(
+    $marketId: String!,
+    $item: ItemsCartInput,
+  ) {
+    cartAddItem(
+      marketId: $marketId,
+      item: $item,
+    ) {
+      id
+      shoppingCarts {
+        market {
+          id
+          name
+        }
+        items {
+          traderCardId
+          itemId
+          name
+          description
+          price
+          quantity
+        }
+      }
+    }
+  }
+`;

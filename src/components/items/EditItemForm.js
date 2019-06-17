@@ -52,13 +52,6 @@ function EditItemForm(props) {
               onChange={setPrice}
             />
           </div>
-          <div className="item-button">
-            <input 
-              type="submit" 
-              value="Save"
-              disabled={loading}
-            />
-          </div>
           <div className="item-description">
             <textarea 
               name="description" 
@@ -67,6 +60,13 @@ function EditItemForm(props) {
               required
               value={description}
               onChange={event => setDescription(event.target.value)}
+            />
+          </div>
+          <div className="item-button">
+            <input 
+              type="submit" 
+              value="Save"
+              disabled={loading}
             />
           </div>
           {error && <p>error.message</p>}

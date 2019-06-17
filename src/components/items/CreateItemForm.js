@@ -54,13 +54,6 @@ function CreateItemForm(props) {
               onChange={setPrice}
             />
           </div>
-          <div className="item-button">
-            <input 
-              type="submit" 
-              value="Add Item"
-              disabled={loading}
-            />
-          </div>
           <div className="item-description">
             <textarea 
               name="description" 
@@ -71,6 +64,13 @@ function CreateItemForm(props) {
               value={description}
               onChange={event => setDescription(event.target.value)}
             />
+          <div className="item-button">
+            <input 
+              type="submit" 
+              value="Add Item"
+              disabled={loading}
+            />
+          </div>
           </div>
           {error && <p>error.message</p>}
         </form>
