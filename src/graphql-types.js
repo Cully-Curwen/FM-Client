@@ -730,3 +730,59 @@ export const CART_ADD_ITEM_MUTATION = gql`
     }
   }
 `;
+
+export const CART_UPDATE_ITEM_MUTATION = gql`
+  mutation cartUpdateItem(
+    $marketId: String!,
+    $item: ItemsCartInput,
+  ) {
+    cartUpdateItem(
+      marketId: $marketId,
+      item: $item,
+    ) {
+      id
+      shoppingCarts {
+        market {
+          id
+          name
+        }
+        items {
+          traderCardId
+          itemId
+          name
+          description
+          price
+          quantity
+        }
+      }
+    }
+  }
+`;
+
+export const CART_REMOVE_ITEM_MUTATION = gql`
+  mutation cartRemoveItem(
+    $marketId: String!,
+    $item: ItemsCartInput,
+  ) {
+    cartRemoveItem(
+      marketId: $marketId,
+      item: $item,
+    ) {
+      id
+      shoppingCarts {
+        market {
+          id
+          name
+        }
+        items {
+          traderCardId
+          itemId
+          name
+          description
+          price
+          quantity
+        }
+      }
+    }
+  }
+`;
