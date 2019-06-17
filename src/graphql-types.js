@@ -652,3 +652,28 @@ export const TRADER_CARD_UPDATE_MUTATION = gql`
     }
   }
 `;
+
+export const ITEM_CREATE_MUTATION = gql`
+  mutation itemCreate(
+    $traderCardId: String!,
+    $name: String!,
+    $description: String!,
+    $stock: Int!,
+    $price: Int!,
+  ) {
+    itemCreate(
+      traderCardId: $traderCardId,
+      name: $name,
+      description: $description,
+      stock: $stock,
+      price: $price,
+    ) {
+      id
+      traderCardId
+      name
+      description
+      stock
+      price
+    }
+  }
+`;
