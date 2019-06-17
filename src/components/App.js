@@ -1,73 +1,86 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styling/App.css';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { CustomerAuthorization, MarketAdminAuthorization, TraderAdminAuthorization } from '../utils';
 import NavBar from "./navbar/NavBar";
-import LoginAndRegister from './LoginAndRegister';
 import Markets from './Markets';
 import Market from './Market';
 import TraderCard from './TraderCard';
 import MarketAdminDashboard from './market_admin/MarketAdminDashboard';
 import TraderAdminDashboard from './trader_admin/TraderAdminDashboard';
+import CustomerLogin from './login_or_register/CustomerLogin';
+import CustomerRegister from './login_or_register/CustomerRegister';
+import MarketAdminLogin from './login_or_register/MarketAdminLogin';
+import MarketAdminRegister from './login_or_register/MarketAdminRegister';
+import TraderAdminLogin from './login_or_register/TraderAdminLogin';
+import TraderAdminRegister from './login_or_register/TraderAdminRegister';
 
 function App(props) {
   const authorized = () => {
     if (CustomerAuthorization()) return <Redirect to='/markets' />
     if (MarketAdminAuthorization()) return <Redirect to='/market_admin' />
     if (TraderAdminAuthorization()) return <Redirect to='/trader_admin' />
-    return <Redirect to='/customer/login' />
   };
+
+  const [redirect, setRedirect] = useState(false);
 
   return (
     <div className="App">
+      {redirect && authorized()}
       <div className="header">
         <NavBar {...props} />
       </div>
       <div className="body">
         <Switch>
           <Route path='/customer/login' component={props => 
-            <LoginAndRegister 
+            <CustomerLogin 
               {...props} 
               userType={'customer'} 
               formLogin={true} 
+              setRedirect={setRedirect}
             />
           } />
           <Route path='/customer/register' component={props => 
-            <LoginAndRegister 
+            <CustomerRegister 
               {...props} 
               userType={'customer'} 
               formLogin={false} 
+              setRedirect={setRedirect}
             />
           } />
           <Route path='/markets' component={props => <Markets {...props} />} />
           <Route path='/market/:id' component={props => <Market {...props} />} />
           <Route path='/market_admin/login' component={props => 
-            <LoginAndRegister 
+            <MarketAdminLogin 
               {...props} 
               userType={'market_admin'} 
               formLogin={true} 
+              setRedirect={setRedirect}
             />
           } />
           <Route path='/market_admin/register' component={props => 
-            <LoginAndRegister 
+            <MarketAdminRegister 
               {...props} 
               userType={'market_admin'} 
               formLogin={false} 
+              setRedirect={setRedirect}
             />
           } />
           <Route path='/trader/:id' component={props => <TraderCard {...props} />} />
           <Route path='/trader_admin/login' component={props => 
-            <LoginAndRegister 
+            <TraderAdminLogin  
               {...props} 
               userType={'trader_admin'} 
               formLogin={true} 
+              setRedirect={setRedirect}
             /> 
           } />
           <Route path='/trader_admin/register' component={props => 
-            <LoginAndRegister 
+            <TraderAdminRegister 
               {...props} 
               userType={'trader_admin'} 
               formLogin={false} 
+              setRedirect={setRedirect}
             />} 
           />
           <Route path="/market_admin" component={props => 
@@ -76,7 +89,10 @@ function App(props) {
           <Route path='/trader_admin' component={props =>
             <TraderAdminDashboard />
           } />
-          <Route path="/" component={() => authorized()} />
+          <Route path="/" component={() => {
+            authorized();
+            return <Redirect to='/customer/login' />
+          }} />
           <Redirect to='/' />
           <Route component={props => <h1>404 - Not Found</h1>}/>
         </Switch>
