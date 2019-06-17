@@ -3,8 +3,6 @@ import { Mutation } from 'react-apollo';
 import { CART_UPDATE_ITEM_MUTATION, CART_REMOVE_ITEM_MUTATION } from '../../graphql-types';
 
 function Item(props) {
-  console.log(props);
-  
   const { marketId } = props;
   const { traderCardId, itemId, name, description, quantity, price } = props.item;
   const item = { traderCardId, itemId, name, description, price };
@@ -35,6 +33,9 @@ function Item(props) {
             </form>
           )}
         </Mutation>
+      </div>
+      <div className="total-price">
+        <h4>{formatPrice(price * quantity)}</h4>
       </div>
       <div className="description">
         <p>{description}</p>
