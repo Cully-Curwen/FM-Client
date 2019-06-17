@@ -6,7 +6,6 @@ import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 
 import { ApolloProvider } from 'react-apollo';
-import { ApolloProvider as ApolloHooksProvider } from 'react-apollo-hooks';
 import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
@@ -36,9 +35,7 @@ const client = new ApolloClient({
 ReactDOM.render(
   <BrowserRouter>
     <ApolloProvider client={client}>
-      <ApolloHooksProvider client={client}>
-        <App />
-      </ApolloHooksProvider>
+      <App />
     </ApolloProvider>
   </BrowserRouter>
 , document.getElementById('root'));
