@@ -16,13 +16,22 @@ import TraderAdminLogin from './login_or_register/TraderAdminLogin';
 import TraderAdminRegister from './login_or_register/TraderAdminRegister';
 
 function App(props) {
-  const authorized = () => {
-    if (CustomerAuthorization()) return <Redirect to='/markets' />
-    if (MarketAdminAuthorization()) return <Redirect to='/market_admin' />
-    if (TraderAdminAuthorization()) return <Redirect to='/trader_admin' />
-  };
-
   const [redirect, setRedirect] = useState(false);
+  
+  const authorized = () => {
+    if (CustomerAuthorization()) {
+      setRedirect(false);
+      return <Redirect to='/markets' />
+    };
+    if (MarketAdminAuthorization()) {
+      setRedirect(false);
+      return <Redirect to='/market_admin' />
+    };
+    if (TraderAdminAuthorization()) {
+      setRedirect(false);
+      return <Redirect to='/trader_admin' />
+    };
+  };
 
   return (
     <div className="App">
