@@ -677,3 +677,28 @@ export const ITEM_CREATE_MUTATION = gql`
     }
   }
 `;
+
+export const ITEM_UPDATE_MUTATION = gql`
+  mutation itemUpdate(
+    $id: ID!,
+    $name: String!,
+    $description: String!,
+    $stock: Int!,
+    $price: Int!,
+  ) {
+    itemUpdate(
+      id: $id,
+      name: $name,
+      description: $description,
+      stock: $stock,
+      price: $price,
+    ) {
+      id
+      traderCardId
+      name
+      description
+      stock
+      price
+    }
+  }
+`;

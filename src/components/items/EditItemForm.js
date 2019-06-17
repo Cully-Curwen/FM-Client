@@ -1,28 +1,28 @@
 import React, { useState } from 'react';
-import { ITEM_CREATE_MUTATION, TRADER_ADMIN_DATA_QUERY } from '../../graphql-types';
+import { ITEM_UPDATE_MUTATION } from '../../graphql-types';
 import { Mutation } from 'react-apollo';
 import CurrencyInput from './CurrencyInput';
 
-function CreateItemForm(props) {
-  const { traderCardId } = props;
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-  const [stock, setStock] = useState('');
-  const [price, setPrice] = useState(0);
-   
+function EditItemForm(props) {
+  const { item } = props;
+  const id = item.id;
+  const [name, setName] = useState(item.name);
+  const [description, setDescription] = useState(item.description);
+  const [stock, setStock] = useState(item.stock);
+  const [price, setPrice] = useState(item.price);
+
   return (
     <Mutation 
-      mutation={ITEM_CREATE_MUTATION}
-      refetchQueries={[{query: TRADER_ADMIN_DATA_QUERY}]}
-      onCompleted={() => props.setNewItemForm(false)}
+      mutation={ITEM_UPDATE_MUTATION}
+      // onCompleted={() => props.setEditItemForm(false)}
     >
-      {(itemCreate, {loading, error}) => (
+      {(itemUpdate, {loading, error}) => (
         <form 
-          className="create-item-form item"
+          className="edit-item-form item"
           onSubmit={event => {
             event.preventDefault();
-            itemCreate({ variables: { traderCardId, name, description, stock: Number(stock), price } });
-            event.target.reset();
+            itemUpdate({ variables: { id, name, description, stock: Number(stock), price } });
+            // event.target.reset();
           }}
         >
           <div className="item-name">
@@ -30,7 +30,6 @@ function CreateItemForm(props) {
               type="text" 
               name="name"
               required
-              placeholder="Name of Item"
               value={name}
               onChange={event => setName(event.target.value)}
             />
@@ -40,8 +39,7 @@ function CreateItemForm(props) {
               type="number" 
               name="stock"
               required
-              placeholder="Stock"
-              min='0'
+              min={0}
               value={stock}
               onChange={event => setStock(event.target.value)}
             />
@@ -57,7 +55,7 @@ function CreateItemForm(props) {
           <div className="item-button">
             <input 
               type="submit" 
-              value="Add Item"
+              value="Save"
               disabled={loading}
             />
           </div>
@@ -67,7 +65,6 @@ function CreateItemForm(props) {
               cols="30" 
               rows="2" 
               required
-              placeholder="Description of Item"
               value={description}
               onChange={event => setDescription(event.target.value)}
             />
@@ -79,4 +76,4 @@ function CreateItemForm(props) {
   );
 };
 
-export default CreateItemForm;
+export default EditItemForm;

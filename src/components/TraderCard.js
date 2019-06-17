@@ -10,6 +10,7 @@ function TraderCard(props) {
     <Query 
       query={TRADER_CARD_DETAILS_QUERY}
       variables={{ traderCardId: props.match.params.id}}
+      fetchPolicy={'cache-and-network'}
     >
       {({ data, error, loading }) => {
         if (loading) { return <div>Loading...</div>; };

@@ -3,6 +3,7 @@ import { TRADER_CARD_UPDATE_MUTATION } from '../../graphql-types';
 import { Mutation } from 'react-apollo';
 
 function EditTraderForm(props) {
+  // const { traderCard, setEditTraderForm, refetch } = props;
   const { traderCard } = props;
 
   const id = traderCard.id;
@@ -21,7 +22,7 @@ function EditTraderForm(props) {
   return (
     <Mutation 
       mutation={TRADER_CARD_UPDATE_MUTATION}
-      onCompleted={() => props.setEditTraderForm(false)} 
+      // onCompleted={() => refetch({traderCardId: id})} 
     >
       {(traderAdminUpdate, { loading, error }) => (
         <div className="create-market-form form">
