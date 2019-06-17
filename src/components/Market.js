@@ -8,7 +8,10 @@ function Market(props) {
   const [slide, setSlide] = useState('info');
 
   return (
-    <Query query={MARKET_DETAILS_QUERY}>
+    <Query 
+      query={MARKET_DETAILS_QUERY}
+      variables={{ marketId: props.match.params.id}}
+    >
       {({ data, error, loading }) => {
         if (loading) { return <div>Loading...</div>; };
         if (error) { return <div>Error! {error.message}</div> };
