@@ -1,9 +1,11 @@
 .body {
   margin-top: 100px;
+  justify-content: center;
+  display: flex;
 }
 
 .tile {
   width: 12rem;
-  height: 15rem;
+  height: auto;
   float: left;
 }
