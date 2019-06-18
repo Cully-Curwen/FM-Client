@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Redirect, Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import LoginAndRegisterNav from './LoginAndRegisterNav';
 import LoginAndRegisterFrom from './LoginAndRegisterFrom';
 import { TraderToken } from '../../constants';
@@ -32,12 +32,12 @@ function TraderAdminLogin(props) {
   const tokenSet = (token) => localStorage[TraderToken] = token;
   
   return (
-    <div className="login-and-register form-container">
+    <div className="login-and-register">
       {authorized()}
       <LoginAndRegisterNav {...props} />
       <Mutation mutation={TRADER_ADMIN_LOGIN_MUTATION} >
         {(traderAdminLogin, { data, error, loading }) => (
-          <>
+          <div className="form-container" >
             <div className="error-message error">
               {data && data.traderAdminLogin.token && tokenSet(data.traderAdminLogin.token) && setRedirect(true)}
               {error && <p>Error: {error.message}</p>}
@@ -47,11 +47,9 @@ function TraderAdminLogin(props) {
               formLogin={formLogin} 
               inputValues={inputValues}
               mutation={traderAdminLogin}
+              userType={userType}
             />
-            <Link to={"/" + userType + (formLogin ? '/register' : '/login')}>
-              <button className="form-type btn">{formLogin ? "Change to Register Form" : "Change to Login Form"}</button>
-            </Link>
-          </>
+          </div>
         )}  
       </Mutation>
     </div>
