@@ -22,13 +22,13 @@ function MarketBasket(props) {
         if (!MarketCart) return <div>Empty Basket</div>
         const [{ market, items }] = MarketCart;
         return (
-          <div className="basket-list">
+          <div className="basket-list w3-panel">
             <h3>{market.name}</h3>
-            <ul>
+            <div>
               {items.map(item => 
               <BasketItem key={item.itemId} item={item} marketId={market.id} />
               )}
-            </ul>
+            </div>
             <h3>Total: {formatPrice(totalPrice(items))}</h3>
           </div>
         );
