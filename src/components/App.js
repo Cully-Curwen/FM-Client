@@ -38,9 +38,7 @@ function App(props) {
   return (
     <div className="App">
       {redirect && authorized()}
-      <div className="header">
-        <NavBar {...props} />
-      </div>
+      <NavBar {...props} />
       <div className="body">
         <Switch>
           <Route path='/customer/login' component={props => 

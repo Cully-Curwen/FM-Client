@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import '../../styling/NavBar.css';
+// import '../../styling/NavBar.css';
 import { Route } from 'react-router-dom';
 import { CustomerAuthorization, MarketAdminAuthorization, TraderAdminAuthorization } from '../../utils';
 import AccountMenu from "./AccountMenu";
@@ -22,25 +22,25 @@ function NavBar(props) {
   };
 
   return (
-    <div className='navbar' >
-      <div className="nav-div list">
+    <nav className='navbar navbar-nav navbar-dark bg-primary' >
+      <div className="nav-item list">
         <NavLink 
           exact
-          to='/customer/markets'
-          activeStyle={{
-            fontWeight: "bold",
-            color: "red"
-          }}
+          to='/'
+          className="nav-item"
         ><h4>Market List</h4></NavLink>
       </div>
-      <div className="nav-div market">
+      <div className="nav-item market">
         <Route path='/market/:id' render={props => <MarketName {...props} pathSeg={'market'} />} />
         <Route path='/trader/:id' render={props => <MarketName {...props} pathSeg={'trader'} />} />
       </div>
-      <div className="nav-div account">
+      <div className="nav-item account">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
         {authorized()}
       </div>
-    </div>
+    </nav>
   );
 };
 

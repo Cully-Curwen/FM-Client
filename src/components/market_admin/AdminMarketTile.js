@@ -1,6 +1,6 @@
 import React from 'react';
 // import { Link } from 'react-router-dom';
-import '../../styling/MarketTile.css';
+// import '../../styling/MarketTile.css';
 
 function AdminMarketTile(props) {
   // const { id, name, blurb, address, geoLocation, directions, imgUrl, openHours } = props.market;
@@ -9,12 +9,14 @@ function AdminMarketTile(props) {
 
   return (
     // <Link to={'/market_admin/market/' + id } >
-      <div className="market-tile tile" onClick={() => setEditMarketForm(market)} >
-        <div className="img">
-          <img src={imgUrl} alt="Market Tile Img" />
+      <div className="market-tile tile card" onClick={() => setEditMarketForm(market)} >
+        <div >
+          <img src={imgUrl} className="card-img-top" alt="Market Tile Img" />
         </div>
-          <h3>{name}</h3>
-          <p>{blurb}</p>
+        <div className="card-body" >
+          <h5 className="card-title" >{name}</h5>
+          <p className="card-text" >{blurb}</p>
+        </div>
       </div>
     // </Link>
   );
