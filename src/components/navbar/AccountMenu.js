@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink, Route } from 'react-router-dom';
 import { CustomerAuthorization, MarketAdminAuthorization, TraderAdminAuthorization } from '../../utils';
-import './styling/AccountMenu.css';
+import '../../styling/AccountMenu.css';
 import basket from '../../icons/shopping-basket-solid.svg';
 import menuBars from '../../icons/bars-solid.svg';
 
@@ -29,7 +29,7 @@ function AccountMenu(props) {
           <img src={menuBars} alt='Account-menu' className="menu-bars" />
         </div>
         <div 
-          className={'dropdown w3-dropdown-content w3-bar-block' + (menuClick && ' w3-show') } 
+          className={'dropdown w3-dropdown-content w3-bar-block w3-card-4' + (menuClick && ' w3-show') } 
           onClick={() => setMenuClick(!menuClick)}
         >
           {CustomerAuthorization() &&

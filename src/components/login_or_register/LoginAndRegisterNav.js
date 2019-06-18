@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from "react-router-dom";
-import './styling/LoginAndRegisterNav.css'
+import '../../styling/LoginAndRegisterNav.css'
 
 function LoginAndRegisterNav(props) {
   const { formLogin } = props;
