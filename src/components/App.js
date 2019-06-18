@@ -38,7 +38,7 @@ function App(props) {
   return (
     <div className="App">
       {redirect && authorized()}
-      <div className="header">
+      <div className="w3-top">
         <NavBar {...props} />
       </div>
       <div className="body">

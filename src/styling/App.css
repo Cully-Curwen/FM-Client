@@ -1,34 +1,68 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.body {
+  margin-top: 100px;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
+  display: flex;
 }
 
 .tile {
-  width: 200px;
-  height: 250px;
-  margin: 10px;
-  border-style: solid;
-  border-color: black;
-  justify-content: space-between;
+  width: 12rem;
+  height: auto;
   float: left;
+}
+
+.form-container {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 2%;
+  display: flex;
+  flex-direction: column;
+  background-color: lightgrey;
+}
+
+.form-input-container {
+  margin-top: 1rem; 
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.form-input-div {
+  width: 66%;
+}
+
+.form-input {
+  width: 100%;
+}
+
+.form-label-div {
+  padding: .2rem;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+
+.form-submit-div {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 2%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.form-submit-button {
+  border-radius: 2%;
+  box-shadow: 4px;
+}
+
+.change-form-div {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.change-form-button {
+  border-radius: 2%;
 }

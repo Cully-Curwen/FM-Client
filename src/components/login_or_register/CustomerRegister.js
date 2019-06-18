@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Redirect, Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import LoginAndRegisterNav from './LoginAndRegisterNav';
 import LoginAndRegisterFrom from './LoginAndRegisterFrom';
 import { CustomerToken } from '../../constants';
@@ -32,12 +32,12 @@ function CustomerRegister(props) {
   const tokenSet = (token) => localStorage[CustomerToken] = token;
   
   return (
-    <div className="login-and-register form-container">
+    <div className="login-and-register">
       {authorized()}
       <LoginAndRegisterNav {...props} />
       <Mutation mutation={CUSTOMER_REGISTER_MUTATION} >
         {(customerRegister, { data, error, loading }) => (
-          <>
+          <div className="form-container" >
             <div className="error-message error">
               {data && data.customerRegister.token && tokenSet(data.customerRegister.token) && setRedirect(true)}
               {error && <p>Error: {error.message}</p>}
@@ -47,11 +47,9 @@ function CustomerRegister(props) {
               formLogin={formLogin} 
               inputValues={inputValues}
               mutation={customerRegister}
+              userType={userType}
             />
-            <Link to={"/" + userType + (formLogin ? '/register' : '/login')}>
-              <button className="form-type btn">{formLogin ? "Change to Register Form" : "Change to Login Form"}</button>
-            </Link>
-          </>
+          </div>
         )}  
       </Mutation>
     </div>

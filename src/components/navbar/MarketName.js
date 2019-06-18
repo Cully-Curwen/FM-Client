@@ -14,8 +14,11 @@ function MarketName(props) {
         const { name, id } = data.traderCardDetails.market;
 
         return (
-          <NavLink className="market-name" to={'/market/' + id} >
-            <h3>{name}</h3>
+          <NavLink 
+            className="market-name w3-bar-item w3-button" 
+            to={'/market/' + id} 
+          >
+            {name}
           </NavLink>
         );
       }}
@@ -30,8 +33,11 @@ function MarketName(props) {
         const name = data.marketDetails.name;
         
         return (
-          <NavLink className="market-name" to={'/market/' + id} >
-            <h3>{name}</h3>
+          <NavLink 
+            className="market-name w3-bar-item w3-button" 
+            to={'/market/' + id} 
+          >
+            {name}
           </NavLink>
         );
       }}

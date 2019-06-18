@@ -17,7 +17,7 @@ function Markets(props) {
           };
 
         return (
-          <div className="markets">
+          <div className="markets w3-container">
             {renderMarkets()}
           </div>
         );
