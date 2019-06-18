@@ -18,7 +18,7 @@ function MarketAdminDashboard(props) {
         {data.administeredMarkets.map(market => 
           <AdminMarketTile key={market.id} market={market} setEditMarketForm={setEditMarketForm} />
         )}
-        <div className="market-tile add-new" onClick={() => setNewMarketForm(true)} >
+        <div className="market-tile create-new tile" onClick={() => setNewMarketForm(true)} >
           <h1>Create New</h1>
         </div>
       </>

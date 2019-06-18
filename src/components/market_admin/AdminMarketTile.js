@@ -9,7 +9,7 @@ function AdminMarketTile(props) {
 
   return (
     // <Link to={'/market_admin/market/' + id } >
-      <div className="market-tile" onClick={() => setEditMarketForm(market)} >
+      <div className="market-tile tile" onClick={() => setEditMarketForm(market)} >
         <div className="img">
           <img src={imgUrl} alt="Market Tile Img" />
         </div>

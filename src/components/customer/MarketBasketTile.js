@@ -1,17 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import BasketItem from '../items/BasketItem';
+import { formatPrice } from "../../utils";
 
 function MarketBasketTile(props) {
   const { market, items } = props.basket;
 
+  const totalPrice = () => {
+    const reducer = (accumulator, currentValue) => accumulator + currentValue;
+    return items.map(item => item.price * item.quantity).reduce(reducer);
+  };
+
   return (
     <Link to={'/market/' + market.id + '/basket' } >
       <div className="market-basket-tile tile">
-        <h4>{market.name}</h4>
+        <h5>{market.name}</h5>
+        <h5>Total: {formatPrice(totalPrice())}</h5>
         <ul>
           {items.map(item => 
-            <BasketItem key={item.itemId} item={item} marketId={market.id} />
+            <li key={item.itemId} ><p>{item.name + '  x' + item.quantity}</p></li>
           )}
         </ul>
       </div>

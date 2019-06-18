@@ -1,6 +1,7 @@
 import React from 'react';
 import { Mutation } from 'react-apollo';
 import { CART_UPDATE_ITEM_MUTATION, CART_REMOVE_ITEM_MUTATION } from '../../graphql-types';
+import { formatPrice } from "../../utils";
 
 function Item(props) {
   const { marketId } = props;
@@ -53,15 +54,6 @@ function Item(props) {
         </Mutation>
     </div>
   );
-};
-
-function formatPrice(value) {
-  return (value * Math.pow(10, -2)).toLocaleString('en-GB', {
-    style: 'currency',
-    currency: 'GBP',
-    currencyDisplay: 'symbol',
-    useGrouping: true
-  });
 };
 
 export default Item;
