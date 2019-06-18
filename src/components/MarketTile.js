@@ -8,7 +8,7 @@ function MarketTile(props) {
   
   return (
     <Link to={'/market/' + id } >
-      <div className="market-tile" >
+      <div className="market-tile tile" >
         <div className="img">
           <img src={imgUrl} alt="Market Tile Img" />
         </div>

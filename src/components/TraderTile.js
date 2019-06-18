@@ -8,7 +8,7 @@ function TraderTile(props) {
   
   return (
     <Link to={'/trader/' + id} >
-      <div className="trader-tile">
+      <div className="trader-tile tile">
         <img src={imgUrl} alt="Trader Card Img"/>
         <h3>{name}</h3>
         <div>{produceTags.map((tag, index)=> <div key={index}>{tag}</div>)}</div>

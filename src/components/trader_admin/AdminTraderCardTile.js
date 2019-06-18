@@ -9,7 +9,7 @@ function AdminTraderCardTile(props) {
 
   return (
     // <Link to={'/admin_trader/trader/' + id} >
-      <div className="trader-tile" onClick={() => setEditTraderCard(traderCard)}>
+      <div className="trader-tile tile" onClick={() => setEditTraderCard(traderCard)}>
         <img src={imgUrl} alt="Trader Card Img"/>
         <h3>{name}</h3>
         <div>{produceTags.map((tag, index)=> <div key={index}>{tag}</div>)}</div>

@@ -9,6 +9,7 @@ export const CUSTOMER_DATA_QUERY = gql`
       firstName
       lastName
       shoppingCarts {
+        id
         market {
           id
           name
@@ -196,6 +197,7 @@ export const CUSTOMER_REGISTER_MUTATION = gql`
         firstName
         lastName
         shoppingCarts {
+          id
           market {
             id
             name
@@ -224,6 +226,7 @@ export const CUSTOMER_LOGIN_MUTATION = gql`
         firstName
         lastName
         shoppingCarts {
+          id
           market {
             id
             name
@@ -262,6 +265,7 @@ export const CUSTOMER_UPDATE_MUTATION = gql`
       firstName
       lastName
       shoppingCarts {
+        id
         market {
           id
           name
@@ -714,6 +718,7 @@ export const CART_ADD_ITEM_MUTATION = gql`
     ) {
       id
       shoppingCarts {
+        id
         market {
           id
           name
@@ -742,6 +747,7 @@ export const CART_UPDATE_ITEM_MUTATION = gql`
     ) {
       id
       shoppingCarts {
+        id
         market {
           id
           name
@@ -770,6 +776,7 @@ export const CART_REMOVE_ITEM_MUTATION = gql`
     ) {
       id
       shoppingCarts {
+        id
         market {
           id
           name

@@ -3,12 +3,9 @@ import { Mutation } from 'react-apollo';
 import { CART_ADD_ITEM_MUTATION } from '../../graphql-types';
 
 function Item(props) {
-  console.log(props);
-  
   const { traderCardId, marketId } = props;
   const { id, name, description, stock, price } = props.item;
   const item = { traderCardId, itemId: id, name, description, quantity: 1, price };
-console.log(item);
 
   return (
     <div className="item" >

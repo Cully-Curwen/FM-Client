@@ -14,6 +14,8 @@ import MarketAdminLogin from './login_or_register/MarketAdminLogin';
 import MarketAdminRegister from './login_or_register/MarketAdminRegister';
 import TraderAdminLogin from './login_or_register/TraderAdminLogin';
 import TraderAdminRegister from './login_or_register/TraderAdminRegister';
+import ShoppingCarts from './customer/ShoppingCarts';
+import MarketBasket from './customer/MarketBasket';
 
 function App(props) {
   const [redirect, setRedirect] = useState(false);
@@ -57,7 +59,11 @@ function App(props) {
               setRedirect={setRedirect}
             />
           } />
+          <Route path='/customer/shopping_carts' component={props => 
+            <ShoppingCarts />
+          } />
           <Route path='/markets' component={props => <Markets {...props} />} />
+          <Route path='/market/:id/basket' component={props => <MarketBasket {...props} />} />
           <Route path='/market/:id' component={props => <Market {...props} />} />
           <Route path='/market_admin/login' component={props => 
             <MarketAdminLogin 

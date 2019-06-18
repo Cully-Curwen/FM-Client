@@ -1,10 +1,14 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Route } from 'react-router-dom';
 
 function AccountMenu(props) {
   return (
     <div className="account-menu">
-      <NavLink to='/' ><button onClick={() => localStorage.clear()} >Log Out</button></NavLink>
+      <Route path='/market/:id' component={props => (
+        <NavLink to={'/market/'+ props.match.params.id +'/basket'} ><button >Market Basket</button></NavLink>
+      )} />
+      <NavLink to='/customer/shopping_carts' ><button >Shopping Carts</button></NavLink>
+      <NavLink exact to='/' ><button onClick={() => localStorage.clear()} >Log Out</button></NavLink>
     </div>
   );
 };
