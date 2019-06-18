@@ -5,7 +5,7 @@ function AccountMenu(props) {
   return (
     <div className="account-menu">
       <Route path='/market/:id' component={props => (
-        <NavLink to='/customer/market_basket' ><button >Market Basket</button></NavLink>
+        <NavLink to={'/market/'+ props.match.params.id +'/basket'} ><button >Market Basket</button></NavLink>
       )} />
       <NavLink to='/customer/shopping_carts' ><button >Shopping Carts</button></NavLink>
       <NavLink exact to='/' ><button onClick={() => localStorage.clear()} >Log Out</button></NavLink>
