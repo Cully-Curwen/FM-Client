@@ -9,23 +9,24 @@ function Item(props) {
   const item = { traderCardId, itemId, name, description, price };
 
   return (
-    <div className="item w3-container w3-cell-row" >
-      <div className="w3-cell-row">
-        <div className="name w3-cell">
+    <div className="item-container" >
+      <div className="item-column item-info">
+      <div className="item-row">
+        <div className="item-name item-text">
           <h4>{name}</h4>
         </div>
-        <div className="price w3-cell">
+        <div className="item-price item-text">
           <h4>{formatPrice(price)}</h4>
         </div>
-        <div className="quantity w3-cell">
+        <div className="item-quantity item-text">
           <Mutation 
             mutation={CART_UPDATE_ITEM_MUTATION} 
-            >
+          >
             {(cartUpdateItem, { loading, error }) => (
-              <form className="quantitiy-input" >
+              <form className="item-input" >
                 <input 
                   type="number" 
-                  name="quantity" 
+                  name="input-quantity item-input" 
                   min={0}
                   value={quantity}
                   onChange={event => cartUpdateItem({variables: { marketId, item: { ...item, quantity: Number(event.target.value) }}})}
@@ -36,23 +37,24 @@ function Item(props) {
             )}
           </Mutation>
         </div>
-        <div className="total-price w3-cell">
+        <div className="total-item-price item-text">
           <h4>{formatPrice(price * quantity)}</h4>
         </div>
       </div>
-      <div className="description w3-cell-row">
-        <p>{description}</p>
+      <div className="item-row">
+        <div className="item-description item-text">
+          <p>{description}</p>
+        </div>
       </div>
-      <div className="button w3-cell">
+      </div>
+      <div className="item-column item-buttons-col">
         <Mutation mutation={CART_REMOVE_ITEM_MUTATION} >
           {(cartRemoveItem, { loading, error }) => (
-            <div className="button">
-              <button 
-                onClick={() => cartRemoveItem({variables: { marketId, item: { ...item, quantity: Number(0) } }})}
-                disabled={loading} 
-                >Remove Item</button>
-              {error && <p>{error.message}</p>}
-            </div>
+            <button 
+              className="item-button basket-remove"
+              onClick={() => cartRemoveItem({variables: { marketId, item: { ...item, quantity: Number(0) } }})}
+              disabled={loading} 
+            >Remove Item</button>
           )}
         </Mutation>
       </div>

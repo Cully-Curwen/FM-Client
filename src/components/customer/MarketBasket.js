@@ -8,6 +8,7 @@ function MarketBasket(props) {
   const id = props.match.params.id
 
   const totalPrice = (array) => {
+    if (array.length === 0) return 0;
     const reducer = (accumulator, currentValue) => accumulator + currentValue;
     return array.map(item => item.price * item.quantity).reduce(reducer);
   };
