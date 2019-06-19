@@ -5,7 +5,11 @@ import { formatPrice } from "../../utils";
 function MarketBasketTile(props) {
   const { market, items } = props.basket;
 
+  // fix needed, need to wipe from Databse
+  if (items.length === 0) return <></>;
+
   const totalPrice = () => {
+    if (items.length === 0) return 0;
     const reducer = (accumulator, currentValue) => accumulator + currentValue;
     return items.map(item => item.price * item.quantity).reduce(reducer);
   };

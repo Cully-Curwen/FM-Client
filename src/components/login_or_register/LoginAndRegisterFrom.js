@@ -28,6 +28,7 @@ function LoginAndRegisterFrom(props) {
             type="email" 
             className="form-input"
             name="email" 
+            required
             value={email} 
             onChange={(event) => setEmail(event.target.value)} 
           />
@@ -44,6 +45,7 @@ function LoginAndRegisterFrom(props) {
                 type="text" 
                 className="form-input"
                 name="firstName" 
+                required={!formLogin}
                 value={firstName} 
                 onChange={(event) => setFirstName(event.target.value)} 
               />
@@ -57,7 +59,8 @@ function LoginAndRegisterFrom(props) {
               <input 
                 type="text" 
                 className="form-input"
-                name="lastName" 
+                name="lastName"
+                required={!formLogin}
                 value={lastName} 
                 onChange={(event) => setLastName(event.target.value)} 
               />
@@ -74,6 +77,7 @@ function LoginAndRegisterFrom(props) {
             type="password" 
             className="form-input"
             name="password" 
+            required
             value={password} 
             onChange={(event) => setPassword(event.target.value)} 
           />

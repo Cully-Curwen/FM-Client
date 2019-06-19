@@ -6,7 +6,6 @@ import { MARKET_ADMIN_DATA_QUERY } from '../../graphql-types';
 import AdminMarketTile from './AdminMarketTile';
 import CreateMarketForm from './CreateMarketForm';
 import EditMarketForm from './EditMarketForm';
-import '../../styling/MarketTile.css';
 
 function MarketAdminDashboard(props) {
   const [newMarketForm, setNewMarketForm] = useState(false);
@@ -14,14 +13,14 @@ function MarketAdminDashboard(props) {
   
   const marketsList = data => {
     return (
-      <>
+      <div className="market-list" >
         {data.administeredMarkets.map(market => 
           <AdminMarketTile key={market.id} market={market} setEditMarketForm={setEditMarketForm} />
         )}
         <div className="market-tile create-new tile" onClick={() => setNewMarketForm(true)} >
           <h1>Create New</h1>
         </div>
-      </>
+      </div>
     );
   };
   

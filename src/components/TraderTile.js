@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../styling/TraderTile.css';
 
 function TraderTile(props) {
   // const { id, admins, name, blurb, imgUrl, links, produceTags } = props.traderCard;

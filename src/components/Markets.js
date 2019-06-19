@@ -1,4 +1,5 @@
 import React, {  } from 'react';
+import { Link } from 'react-router-dom';
 import { Query } from 'react-apollo';
 import MarketTile from './MarketTile';
 import { MARKET_LIST_QUERY } from '../graphql-types';
@@ -10,15 +11,13 @@ function Markets(props) {
         if (loading) { return <div>Loading...</div>; };
         if (error) { return <div>Error! {error.message}</div> };
 
-        const renderMarkets = () => {
-          return data.marketsList.map(market => 
-            <MarketTile key={market.id} market={market} />
-            )
-          };
-
         return (
-          <div className="markets w3-container">
-            {renderMarkets()}
+          <div className="markets market-list">
+            {data.marketsList.map(market => 
+              <Link key={market.id} to={'/market/' + market.id } >
+                <MarketTile market={market} />
+              </Link>
+            )}
           </div>
         );
       }}    

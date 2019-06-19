@@ -4,15 +4,7 @@
   display: flex;
 }
 
-.tile {
-  width: 12rem;
-  height: auto;
-  float: left;
-}
-
 .form-container {
-  margin-top: 1rem;
-  padding: 1rem;
   border-radius: 2%;
   display: flex;
   flex-direction: column;
@@ -20,22 +12,62 @@
 }
 
 .form-input-container {
-  margin-top: 1rem; 
+  margin-top: .2rem;
+  margin-bottom: .2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.form-input-container-row {
+  margin-top: .2rem;
+  margin-bottom: .2rem;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
 }
 
+.form-input-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.form-input-cell {
+  display: flex;
+  flex-direction: column;
+  width: 100%
+}
+
 .form-input-div {
-  width: 66%;
+  width: 100%;
 }
 
 .form-input {
   width: 100%;
 }
 
+/* .form-input-div-row {
+} */
+
+.form-textarea {
+  resize: none;
+  border-color: silver ;
+}
+
+.form-select {
+  border-color: silver ;
+  
+}
+
 .form-label-div {
   padding: .2rem;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+
+.form-label-block {
   display: flex;
   align-items: center;
   justify-content: right;
@@ -64,5 +96,101 @@
 }
 
 .change-form-button {
-  border-radius: 2%;
+  background-color: lightgrey;
+  border: unset;
+}
+
+.market-list {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-content: space-around;
+}
+
+.tile {
+  width: 12rem;
+  height: auto;
+}
+
+/* .tile > img {
+  width: 100%;
+  height: auto;
+} */
+
+.item-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.item-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.item-info {
+  width: 90%;
+}
+
+.item-buttons-col {
+  width: 10%;
+}
+
+.item-button {
+  background-color: green;
+  border: none;
+  color: white;
+  text-align: center;
+  overflow-wrap: normal;
+  height: 100%;
+}
+
+.item-create 
+
+.item-edit 
+
+
+.item-text {
+  width: 100%;
+}
+
+.item-description-input {
+  resize: none;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.item-input {
+  width: 100%;
+}
+
+.item-input input {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.slide-select-container {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 0.2rem;
+}
+
+.slide-select-btn {
+  width: 100%;
+  border: none;
+  border-bottom: 6px solid silver;
+}
+
+.slide-select-btn:focus {
+  outline: none;
+}
+
+.slide-active {
+  border-color: #4CAF50;
 }

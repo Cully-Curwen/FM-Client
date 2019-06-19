@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ITEM_UPDATE_MUTATION } from '../../graphql-types';
 import { Mutation } from 'react-apollo';
-import CurrencyInput from './CurrencyInput';
+import ItemForm from './ItemForm';
 
 function EditItemForm(props) {
   const { item } = props;
@@ -11,66 +11,25 @@ function EditItemForm(props) {
   const [stock, setStock] = useState(item.stock);
   const [price, setPrice] = useState(item.price);
 
+  const variables = { id, name, description, stock: Number(stock), price };
+  const submitButton = 'Save';
+  const values = { name, description, stock, price };
+  const setValues = { setName, setDescription, setStock, setPrice };
+
   return (
     <Mutation 
       mutation={ITEM_UPDATE_MUTATION}
-      // onCompleted={() => props.setEditItemForm(false)}
     >
       {(itemUpdate, {loading, error}) => (
-        <form 
-          className="edit-item-form item"
-          onSubmit={event => {
-            event.preventDefault();
-            itemUpdate({ variables: { id, name, description, stock: Number(stock), price } });
-            // event.target.reset();
-          }}
-        >
-          <div className="item-name">
-            <input
-              type="text" 
-              name="name"
-              required
-              value={name}
-              onChange={event => setName(event.target.value)}
-            />
-          </div>
-          <div className="item-stock">
-            <input 
-              type="number" 
-              name="stock"
-              required
-              min={0}
-              value={stock}
-              onChange={event => setStock(event.target.value)}
-            />
-          </div>
-          <div className="item-price">
-            <CurrencyInput 
-              name={"price"}
-              required
-              value={price}
-              onChange={setPrice}
-            />
-          </div>
-          <div className="item-description">
-            <textarea 
-              name="description" 
-              cols="30" 
-              rows="2" 
-              required
-              value={description}
-              onChange={event => setDescription(event.target.value)}
-            />
-          </div>
-          <div className="item-button">
-            <input 
-              type="submit" 
-              value="Save"
-              disabled={loading}
-            />
-          </div>
-          {error && <p>error.message</p>}
-        </form>
+        <ItemForm 
+          mutation={itemUpdate}
+          variables={variables}
+          loading={loading}
+          error={error}
+          submitButton={submitButton}
+          values={values}
+          setValues={setValues}
+        />
       )}
     </Mutation>
   );

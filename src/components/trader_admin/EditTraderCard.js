@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Query } from "react-apollo";
 import { TRADER_CARD_DETAILS_QUERY } from '../../graphql-types';
-import EditTraderForm from './EditTraderForm';
+import EditTraderInfoForm from './EditTraderInfoForm';
 import EditChalkBoard from './EditChalkBoard';
 
 function EditTraderCard(props) {
@@ -22,23 +22,23 @@ function EditTraderCard(props) {
         
         return (
           <div className="edit-trader-card container">
-            <div className="buttons">
+            <div className="slide-select-container">
               <button 
-                className="info select-slide"
+                className={"slide-select-btn" + (editTraderForm ? ' slide-active' : '')}
                 onClick={() => {
                   setChalkBoard(false);
                   setEditTraderForm(true);
                 }}
               >Info</button>
               <button 
-                className="chalk-board select-slide"
+                className={"slide-select-btn" + (chalkBoard ? ' slide-active' : '')}
                 onClick={() => {
                   setChalkBoard(true);
                   setEditTraderForm(false);
                 }}
               >Chalk Board</button>
             </div>
-            {editTraderForm && <EditTraderForm setEditTraderForm={setEditTraderForm} traderCard={traderCard} />}
+            {editTraderForm && <EditTraderInfoForm setEditTraderForm={setEditTraderForm} traderCard={traderCard} />}
             {chalkBoard && <EditChalkBoard traderCard={traderCard} />}
           </div>
         );

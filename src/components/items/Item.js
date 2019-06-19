@@ -8,30 +8,36 @@ function Item(props) {
   const item = { traderCardId, itemId: id, name, description, quantity: 1, price };
 
   return (
-    <div className="item" >
-      <div className="name">
-        <h4>{name}</h4>
+    <div className="item-container" >
+      <div className="item-column item-info">
+        <div className="item-row">
+          <div className="item-name item-text">
+            <h4>{name}</h4>
+          </div>
+          <div className="item-stock item-text">
+            <h4>{stock}</h4>
+          </div>
+          <div className="item-price item-text">
+            <h4>{formatPrice(price)}</h4>
+          </div>
+        </div>
+        <div className="item-row">
+          <div className="item-description item-text">
+            <p>{description}</p>
+          </div>
+        </div>
       </div>
-      <div className="price">
-        <h4>{formatPrice(price)}</h4>
-      </div>
-      <div className="stock">
-        <h4>{stock}</h4>
-      </div>
-      <div className="description">
-        <p>{description}</p>
-      </div>
+      <div className="item-column item-buttons-col">
         <Mutation mutation={CART_ADD_ITEM_MUTATION} >
           {(cartAddItem, { loading, error }) => (
-            <div className="button">
-              <button 
-                onClick={() => cartAddItem({variables: { marketId, item }})}
-                disabled={loading} 
-              >Add to Basket</button>
-              {error && <p>{error.message}</p>}
-            </div>
+            <button 
+              className="item-button"
+              onClick={() => cartAddItem({variables: { marketId, item }})}
+              disabled={loading} 
+            >Add to Basket</button>
           )}
         </Mutation>
+      </div>
     </div>
   );
 };

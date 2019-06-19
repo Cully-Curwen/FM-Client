@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink, Route } from 'react-router-dom';
 import { CustomerAuthorization, MarketAdminAuthorization, TraderAdminAuthorization } from '../../utils';
-import '../../styling/AccountMenu.css';
 import basket from '../../icons/shopping-basket-solid.svg';
 import menuBars from '../../icons/bars-solid.svg';
 
@@ -42,7 +41,15 @@ function AccountMenu(props) {
             exact 
             to='/' 
             className="w3-bar-item w3-button" 
-          ><div onClick={() => {localStorage.clear();}} >Log Out</div></NavLink>
+          >
+            <div 
+              onClick={() => {
+                localStorage.clear();
+                document.location.reload(true);
+                document.location.replace('/');
+              }}  
+            >Log Out</div>
+          </NavLink>
         </div>
       </div>
       <div className="w3-clear"></div>
