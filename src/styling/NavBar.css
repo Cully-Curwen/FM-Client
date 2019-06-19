@@ -1,3 +1,20 @@
-.market {
-  
+.market
+
+.dropdown {
+  right: 0;
+  top: 55px;
+}
+
+.basket {
+  width: 2rem;
+  height: auto;
+}
+
+.menu-bars {
+  width: 1.2rem;
+  height: auto;
+}
+
+li {
+  list-style-type: none;
 }
