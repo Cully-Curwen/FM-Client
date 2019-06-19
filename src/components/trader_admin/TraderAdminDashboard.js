@@ -6,7 +6,6 @@ import { TRADER_ADMIN_DATA_QUERY } from '../../graphql-types';
 import AdminTraderCardTile from './AdminTraderCardTile';
 import CreateTraderCardForm from './CreateTraderCardForm';
 import EditTraderCard from './EditTraderCard';
-import '../../styling/TraderTile.css';
 
 function TraderAdminDashboard(props) {
   const [newTraderForm, setNewTraderForm] = useState(false);

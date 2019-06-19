@@ -96,3 +96,10 @@
   background-color: lightgrey;
   border: unset;
 }
+
+.market-list {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-content: space-around;
+}
