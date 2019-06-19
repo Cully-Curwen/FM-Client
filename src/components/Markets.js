@@ -12,7 +12,7 @@ function Markets(props) {
         if (error) { return <div>Error! {error.message}</div> };
 
         return (
-          <div className="markets w3-panel market-list">
+          <div className="markets market-list">
             {data.marketsList.map(market => 
               <Link key={market.id} to={'/market/' + market.id } >
                 <MarketTile market={market} />

@@ -4,12 +4,6 @@
   display: flex;
 }
 
-.tile {
-  width: 12rem;
-  height: auto;
-  float: left;
-}
-
 .form-container {
   margin-top: 1rem; 
   padding: 1rem;
@@ -103,3 +97,13 @@
   justify-content: space-around;
   align-content: space-around;
 }
+
+.tile {
+  width: 12rem;
+  height: auto;
+}
+
+/* .tile > img {
+  width: 100%;
+  height: auto;
+} */
