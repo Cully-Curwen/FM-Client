@@ -3,7 +3,7 @@ import { TRADER_CARD_UPDATE_MUTATION } from '../../graphql-types';
 import { Mutation } from 'react-apollo';
 import TraderCardInfoForm from './TraderCardInfoForm';
 
-function EditTraderForm(props) {
+function EditTraderInfoForm(props) {
   const { traderCard } = props;
 
   const id = traderCard.id;
@@ -40,4 +40,4 @@ function EditTraderForm(props) {
   );
 };
 
-export default EditTraderForm;
+export default EditTraderInfoForm;
