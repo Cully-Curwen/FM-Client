@@ -53,11 +53,11 @@ function TraderCard(props) {
           <div className="trader-card">
             <div className="slide-select-container">
               <button 
-                className="slide-select-btn"
+                className={"slide-select-btn" + (slide === 'info' ? ' slide-active' : '')}
                 onClick={() => setSlide('info')}
               >Info</button>
               <button 
-                className="slide-select-btn"
+                className={"slide-select-btn" + (slide === 'traderCards' ? ' slide-active' : '')}
                 onClick={() => setSlide('traderCards')}
               >Products</button>
             </div>

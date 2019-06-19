@@ -23,6 +23,7 @@ function Market(props) {
           switch (slide) {
             case 'info':
               return (
+                // Market Info Panel needed
                 <div className="market-info">
                   <img src={imgUrl} alt="of Market"/>
                   <h3>{name}</h3>
@@ -48,11 +49,11 @@ function Market(props) {
           <div className="market">
             <div className="slide-select-container">
               <button 
-                className="slide-select-btn"
+                className={"slide-select-btn" + (slide === 'info' ? ' slide-active' : '')}
                 onClick={() => setSlide('info')}
               >Info</button>
               <button 
-                className="slide-select-btn"
+                className={"slide-select-btn" + (slide === 'traderCards' ? ' slide-active' : '')}
                 onClick={() => setSlide('traderCards')}
               >Traders</button>
             </div>

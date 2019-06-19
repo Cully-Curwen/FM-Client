@@ -22,16 +22,16 @@ function EditTraderCard(props) {
         
         return (
           <div className="edit-trader-card container">
-            <div className="buttons">
+            <div className="slide-select-container">
               <button 
-                className="info select-slide"
+                className={"slide-select-btn" + (editTraderForm ? ' slide-active' : '')}
                 onClick={() => {
                   setChalkBoard(false);
                   setEditTraderForm(true);
                 }}
               >Info</button>
               <button 
-                className="chalk-board select-slide"
+                className={"slide-select-btn" + (chalkBoard ? ' slide-active' : '')}
                 onClick={() => {
                   setChalkBoard(true);
                   setEditTraderForm(false);

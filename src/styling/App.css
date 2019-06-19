@@ -174,3 +174,23 @@
   height: 100%;
   border: none;
 }
+
+.slide-select-container {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 0.2rem;
+}
+
+.slide-select-btn {
+  width: 100%;
+  border: none;
+  border-bottom: 6px solid silver;
+}
+
+.slide-select-btn:focus {
+  outline: none;
+}
+
+.slide-active {
+  border-color: #4CAF50;
+}
