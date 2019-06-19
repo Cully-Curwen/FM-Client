@@ -21,6 +21,14 @@
   justify-content: flex-end;
 }
 
+.form-input-container-row {
+  margin-top: .2rem;
+  margin-bottom: .2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
 .form-input-block {
   display: flex;
   flex-direction: row;
@@ -40,6 +48,9 @@
 .form-input {
   width: 100%;
 }
+
+/* .form-input-div-row {
+} */
 
 .form-textarea {
   resize: none;
@@ -107,3 +118,4 @@
   width: 100%;
   height: auto;
 } */
+

@@ -60,10 +60,14 @@ export const TRADER_ADMIN_DATA_QUERY = gql`
       name
       blurb
       imgUrl
+      produceTags
       links {
         website
+        email
+        facebook
+        twitter
+        instagram
       }
-      produceTags
       inventory {
         id
         name
@@ -602,13 +606,20 @@ export const TRADER_CARD_CREATE_MUTATION = gql`
     ) {
       id
       admins
+      market {
+        id
+      }
       name
       blurb
       imgUrl
+      produceTags
       links {
         website
+        email
+        facebook
+        twitter
+        instagram
       }
-      produceTags
       inventory {
         id
         name
@@ -639,13 +650,20 @@ export const TRADER_CARD_UPDATE_MUTATION = gql`
     ) {
       id
       admins
+      market {
+        id
+      }
       name
       blurb
       imgUrl
+      produceTags
       links {
         website
+        email
+        facebook
+        twitter
+        instagram
       }
-      produceTags
       inventory {
         id
         name

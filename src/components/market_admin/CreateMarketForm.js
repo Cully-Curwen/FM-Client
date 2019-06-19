@@ -38,9 +38,9 @@ function CreateMarketForm(props) {
       {(marketCreate, { loading, error }) => (
         <MarketForm 
         mutation={marketCreate}
+        variables={variables}
         loading={loading}
         error={error}
-        variables={variables}
         submitButton={submitButton}
         values={values}
         setValues={setValues}
