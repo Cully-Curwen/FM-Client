@@ -22,8 +22,9 @@ function MarketBasket(props) {
         const MarketCart = data.customerData.shoppingCarts.filter(obj => obj.id === id );
         if (!MarketCart) return <div>Empty Basket</div>
         const [{ market, items }] = MarketCart;
+
         return (
-          <div className="basket-list w3-panel">
+          <div className="basket-list panel">
             <h3>{market.name}</h3>
             <div>
               {items.map(item => 

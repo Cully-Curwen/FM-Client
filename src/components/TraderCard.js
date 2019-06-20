@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Query } from 'react-apollo';
 import { TRADER_CARD_DETAILS_QUERY } from '../graphql-types';
 import Item from './items/Item';
+import { capitalizeFirst } from '../utils';
 
 function TraderCard(props) {
   const [slide, setSlide] = useState('info');
@@ -35,7 +36,7 @@ function TraderCard(props) {
                   <div className="info-links">
                     {linksKeys.map(key => links[key] ? (
                       <div className="link" key={key} >
-                        {key + ': '}<a href={links[key]}>{links[key]}</a>
+                        {capitalizeFirst(key) + ': '}<a href={links[key]}>{links[key]}</a>
                       </div>
                       )
                       : null
