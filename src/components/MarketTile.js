@@ -2,14 +2,29 @@ import React from 'react';
 
 function MarketTile(props) {
   // const { id, name, blurb, address, geoLocation, directions, imgUrl, openHours } = props.market;
-  const { name, blurb, imgUrl } = props.market;
+  const { name, blurb, imgUrl, address } = props.market;
+  const { openTime, closeTime, tradingDay } = props.market.openHours;
   
   return (
     <div className="market-tile tile" >
       <img src={imgUrl} alt="Market Tile Img" />
-      <div className="">
-        <h3>{name}</h3>
-        <p>{blurb}</p>
+      <div className="tile-body">
+        <div className="tile-name">
+          {name}
+        </div>
+        <div className="tile-blurb">
+          {blurb}
+        </div>
+      </div>
+      <div className="tile-footer">
+        <div className="tile-open-hours">
+          {tradingDay + ' from ' + openTime + ' - ' + closeTime}
+        </div>
+        {address &&
+          <div className="tile-address">
+            {address}
+          </div>
+        }
       </div>
     </div>
   );

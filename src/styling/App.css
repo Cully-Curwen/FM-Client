@@ -110,12 +110,50 @@
 .tile {
   width: 12rem;
   height: auto;
+  margin: 1rem;
+  box-shadow: 3px 3px 3px grey;
+  text-align: center;
 }
 
-/* .tile > img {
-  width: 100%;
-  height: auto;
-} */
+.tile-body {
+  border-bottom: 1px black;
+}
+
+.tile-footer
+
+.tile-name {
+  font-size: 1.4rem;
+}
+
+.tile-blurb {
+  font-size: 0.8rem;
+}
+
+.tile-address {
+  font-size: 0.7rem;
+}
+
+.tile-open-hours {
+  font-size: 0.8rem;
+}
+
+.tile-produce-tags {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.tile-tag {
+  color: white;
+  font-size: 0.7rem;
+  background-color: silver;
+  border-radius: 5%;
+  padding: 0 3px;
+}
+
+.tablink {
+  text-decoration-line: unset;
+}
 
 .item-container {
   display: flex;

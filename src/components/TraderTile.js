@@ -6,12 +6,32 @@ function TraderTile(props) {
   const { id, name, blurb, imgUrl, produceTags } = props.traderCard;
   
   return (
-    <Link to={'/trader/' + id} >
+    <Link to={'/trader/' + id} className="tablink" >
       <div className="trader-tile tile">
         <img src={imgUrl} alt="Trader Card Img"/>
-        <h3>{name}</h3>
-        <div>{produceTags.map((tag, index)=> <div key={index}>{tag}</div>)}</div>
-        <p>{blurb}</p>
+        <div className="tile-body">
+          <div className="tile-name">
+            {name}
+          </div>
+          <div className="tile-produce-tags">
+            {produceTags.map(tag => 
+              <div className="tile-tag">{tag}</div>
+            )}
+          </div>
+          <div className="tile-blurb">
+            {blurb}
+          </div>
+        </div>
+        <div className="tile-footer">
+          {/* <div className="tile-open-hours">
+            {tradingDay + ' from ' + openTime + ' - ' + closeTime}
+          </div>
+          {address &&
+            <div className="tile-address">
+              {address}
+            </div>
+          } */}
+        </div>
       </div>
     </Link>
   );
