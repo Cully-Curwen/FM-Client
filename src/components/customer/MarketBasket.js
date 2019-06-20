@@ -20,7 +20,9 @@ function MarketBasket(props) {
         if (error) return <p>{error.message}</p>
         
         const MarketCart = data.customerData.shoppingCarts.filter(obj => obj.id === id );
-        if (!MarketCart) return <div>Empty Basket</div>
+        if (MarketCart.length === 0) return <div>Empty Basket</div>
+        console.log(MarketCart);
+        
         const [{ market, items }] = MarketCart;
 
         return (
