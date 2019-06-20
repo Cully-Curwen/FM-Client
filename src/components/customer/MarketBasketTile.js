@@ -15,14 +15,16 @@ function MarketBasketTile(props) {
   };
 
   return (
-    <Link to={'/market/' + market.id + '/basket' } >
-      <div className="market-basket-tile tile w3-card-4">
-        <header className="w3-container w3-center">
-          <h5>{market.name}</h5>
-        </header>
-        <div className="w3-container w3-center">
-          <h6>Total: {formatPrice(totalPrice())}</h6>
-          <div>
+    <Link to={'/market/' + market.id + '/basket' } className="tablink" >
+      <div className="market-basket-tile tile ">
+        <div className="tile-basket">
+          <div className="tile-name">
+            {market.name}
+          </div>
+          <div className="tile-total">
+            Total: {formatPrice(totalPrice())}
+          </div>
+          <div className="tile-item">
             {items.map(item => 
               <li key={item.itemId} ><p>{item.name + '  x' + item.quantity}</p></li>
               )}

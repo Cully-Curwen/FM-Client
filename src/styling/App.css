@@ -6,6 +6,8 @@
 
 .form-container {
   border-radius: 2%;
+  margin-top: 0.5rem;
+  padding: 0rem 2rem;
   display: flex;
   flex-direction: column;
   background-color: lightgrey;
@@ -146,6 +148,15 @@
 
 .tile-footer
 
+.tile-basket {
+  height: 100%;
+  padding: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  overflow: hidden;
+}
+
 .tile-name {
   font-size: 1.4rem;
 }
@@ -174,6 +185,14 @@
   background-color: silver;
   border-radius: 5%;
   padding: 0 3px;
+}
+
+.tile-total {
+  font-size: 0.8rem;
+}
+
+.tile-item {
+  font-size: 0.8rem;
 }
 
 .tablink {
