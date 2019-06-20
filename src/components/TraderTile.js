@@ -23,14 +23,6 @@ function TraderTile(props) {
           </div>
         </div>
         <div className="tile-footer">
-          {/* <div className="tile-open-hours">
-            {tradingDay + ' from ' + openTime + ' - ' + closeTime}
-          </div>
-          {address &&
-            <div className="tile-address">
-              {address}
-            </div>
-          } */}
         </div>
       </div>
     </Link>
