@@ -12,9 +12,9 @@ function Markets(props) {
         if (error) { return <div>Error! {error.message}</div> };
 
         return (
-          <div className="markets market-list">
+          <div className="markets panel list">
             {data.marketsList.map(market => 
-              <Link key={market.id} to={'/market/' + market.id } >
+              <Link className="tablink" key={market.id} to={'/market/' + market.id } >
                 <MarketTile market={market} />
               </Link>
             )}

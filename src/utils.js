@@ -21,3 +21,5 @@ export function formatPrice(value) {
     useGrouping: true
   });
 };
+
+export const capitalizeFirst = (string) => string.charAt(0).toUpperCase() + string.slice(1);

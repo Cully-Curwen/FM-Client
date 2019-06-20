@@ -12,18 +12,18 @@ function Item(props) {
       <div className="item-column item-info">
         <div className="item-row">
           <div className="item-name item-text">
-            <h4>{name}</h4>
+            {name}
           </div>
           <div className="item-stock item-text">
-            <h4>{stock}</h4>
+            {stock}
           </div>
           <div className="item-price item-text">
-            <h4>{formatPrice(price)}</h4>
+            {formatPrice(price)}
           </div>
         </div>
         <div className="item-row">
           <div className="item-description item-text">
-            <p>{description}</p>
+            {description}
           </div>
         </div>
       </div>

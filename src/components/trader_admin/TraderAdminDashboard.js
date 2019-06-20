@@ -13,9 +13,13 @@ function TraderAdminDashboard(props) {
   
   const tradersList = data => {
     return (
-      <div className="market-list" > 
+      <div className="market-list list" > 
         {data.administeredTraders.map(traderCard => 
-          <AdminTraderCardTile key={traderCard.id} traderCard={traderCard} setEditTraderCard={setEditTraderCard} />
+          <AdminTraderCardTile 
+            key={traderCard.id} 
+            traderCard={traderCard} 
+            setEditTraderCard={setEditTraderCard}
+          />
           )}
         <div className="trader-tile create-new tile" onClick={() => setNewTraderForm(true)} >
           <h1>Create New</h1>
@@ -32,7 +36,7 @@ function TraderAdminDashboard(props) {
         if (error) return <p>Error: {error.message}</p>;
         
         return (
-          <div className="trader-admin-dashboard dashboard">
+          <div className="trader-admin-dashboard dashboard panel">
             {newTraderForm && <CreateTraderCardForm setNewTraderForm={setNewTraderForm} />}
             {editTraderCard && <EditTraderCard setEditTraderCard={setEditTraderCard} traderCard={editTraderCard} />}
             {!newTraderForm && !editTraderCard && tradersList(data)}

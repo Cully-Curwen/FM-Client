@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink, Route } from 'react-router-dom';
 import { CustomerAuthorization, MarketAdminAuthorization, TraderAdminAuthorization } from '../../utils';
-import basket from '../../icons/shopping-basket-solid.svg';
+import NavBasket from './NavBasket';
 import menuBars from '../../icons/bars-solid.svg';
 
 function AccountMenu(props) {
@@ -14,14 +14,10 @@ function AccountMenu(props) {
   return (
     <div className="w3-bar">
       {CustomerAuthorization() &&
-        <Route path='/market/:id' component={props => (
-          <NavLink 
-            to={'/market/'+ props.match.params.id +'/basket'} 
-            className="w3-bar-item w3-button"
-          >
-            <img src={basket} alt='Market Basket' className="basket" />
-          </NavLink>
-        )} />
+        <div className="navbar-basket">
+          <Route path='/market/:id' component={props => ( <NavBasket {...props} pathSeg={'market'} /> )} />
+          <Route path='/trader/:id' component={props => ( <NavBasket {...props} pathSeg={'trader'} /> )} />
+        </div>
       }
       <div className="w3-dropdown-click">
         <div className="w3-bar-item w3-button" onClick={() => setMenuClick(!menuClick)} >

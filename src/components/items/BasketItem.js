@@ -12,21 +12,21 @@ function Item(props) {
     <div className="item-container" >
       <div className="item-column item-info">
       <div className="item-row">
-        <div className="item-name item-text">
-          <h4>{name}</h4>
+        <div className="item-text">
+          {name}
         </div>
-        <div className="item-price item-text">
-          <h4>{formatPrice(price)}</h4>
+        <div className="item-text">
+          {formatPrice(price)}
         </div>
-        <div className="item-quantity item-text">
+        <div className="item-text">
           <Mutation 
             mutation={CART_UPDATE_ITEM_MUTATION} 
           >
             {(cartUpdateItem, { loading, error }) => (
-              <form className="item-input" >
+              <form className="item-quantity-input" >
                 <input 
                   type="number" 
-                  name="input-quantity item-input" 
+                  name="quantity" 
                   min={0}
                   value={quantity}
                   onChange={event => cartUpdateItem({variables: { marketId, item: { ...item, quantity: Number(event.target.value) }}})}
@@ -37,12 +37,12 @@ function Item(props) {
             )}
           </Mutation>
         </div>
-        <div className="total-item-price item-text">
-          <h4>{formatPrice(price * quantity)}</h4>
+        <div className="item-text">
+          {formatPrice(price * quantity)}
         </div>
       </div>
       <div className="item-row">
-        <div className="item-description item-text">
+        <div className="item-text item-description">
           <p>{description}</p>
         </div>
       </div>
@@ -51,10 +51,12 @@ function Item(props) {
         <Mutation mutation={CART_REMOVE_ITEM_MUTATION} >
           {(cartRemoveItem, { loading, error }) => (
             <button 
-              className="item-button basket-remove"
+              className="item-button"
               onClick={() => cartRemoveItem({variables: { marketId, item: { ...item, quantity: Number(0) } }})}
               disabled={loading} 
-            >Remove Item</button>
+            >
+              Remove
+            </button>
           )}
         </Mutation>
       </div>

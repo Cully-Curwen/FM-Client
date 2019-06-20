@@ -13,7 +13,7 @@ function MarketAdminDashboard(props) {
   
   const marketsList = data => {
     return (
-      <div className="market-list" >
+      <div className="market-list list" >
         {data.administeredMarkets.map(market => 
           <AdminMarketTile key={market.id} market={market} setEditMarketForm={setEditMarketForm} />
         )}
@@ -32,7 +32,7 @@ function MarketAdminDashboard(props) {
         if (error) return <p>Error: {error.message}</p>;
         
         return (
-          <div className='market-admin-dashboard dashboard'>          
+          <div className='market-admin-dashboard dashboard panel'>          
             {newMarketForm && <CreateMarketForm setNewMarketForm={setNewMarketForm} />}
             {editMarketForm && <EditMarketForm setEditMarketForm={setEditMarketForm} market={editMarketForm} />}
             {!newMarketForm && !editMarketForm && marketsList(data)}
