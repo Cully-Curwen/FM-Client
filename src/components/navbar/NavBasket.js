@@ -17,12 +17,14 @@ function NavBasket(props) {
 
         return CustomerAuthorization() 
         ? (
+          <div className="nav-basket">
             <NavLink 
               to={'/market/' + id + '/basket'} 
               className="w3-bar-item w3-button"
             >
               <img src={basket} alt='Market Basket' className="basket" />
             </NavLink>
+          </div>
         )
         : (<></>)
       }}
@@ -37,12 +39,14 @@ function NavBasket(props) {
         
         return CustomerAuthorization() 
         ? (
+          <div className="nav-basket">
             <NavLink 
               to={'/market/' + id + '/basket'} 
               className="w3-bar-item w3-button"
             >
               <img src={basket} alt='Market Basket' className="basket" />
             </NavLink>
+          </div>
         )
         : (<></>)
       }}

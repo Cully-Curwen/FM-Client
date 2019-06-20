@@ -8,21 +8,21 @@ import MarketName from './MarketName'
 function NavBar(props) {
 
   return (
-    <div className='w3-bar w3-green' >
-      <div className="w3-bar-item w3-cell w3-left list">
+    <div className='navbar w3-green' >
+      <div className="nav-list">
         <NavLink 
           exact
           to='/customer/markets'
           className="w3-bar-item w3-button"
           >
-          Market List
+          Markets
         </NavLink>
       </div>
-      <div className="w3-bar-item w3-cell market">
+      <div className="nav-market">
         <Route path='/market/:id' render={props => <MarketName {...props} pathSeg={'market'} />} />
         <Route path='/trader/:id' render={props => <MarketName {...props} pathSeg={'trader'} />} />
       </div>
-      <div className="w3-bar-item w3-cell w3-right account">
+      <div className="nav-account" id="account" >
         <AccountMenu />
       </div>
     </div>

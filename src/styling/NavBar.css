@@ -1,8 +1,30 @@
-.market
+.navbar {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.nav-list
+
+.nav-market
+
+#account {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.nav-account {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 
 .dropdown {
   right: 0;
-  top: 55px;
+  top: 3rem;
 }
 
 .basket {

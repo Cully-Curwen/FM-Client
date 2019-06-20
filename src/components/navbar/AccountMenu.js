@@ -12,14 +12,14 @@ function AccountMenu(props) {
   }; 
 
   return (
-    <div className="w3-bar">
+    <>
       {CustomerAuthorization() &&
-        <div className="navbar-basket">
+        <>
           <Route path='/market/:id' component={props => ( <NavBasket {...props} pathSeg={'market'} /> )} />
           <Route path='/trader/:id' component={props => ( <NavBasket {...props} pathSeg={'trader'} /> )} />
-        </div>
+        </>
       }
-      <div className="w3-dropdown-click">
+      <div className="nav-dropdown">
         <div className="w3-bar-item w3-button" onClick={() => setMenuClick(!menuClick)} >
           <img src={menuBars} alt='Account-menu' className="menu-bars" />
         </div>
@@ -49,7 +49,7 @@ function AccountMenu(props) {
         </div>
       </div>
       <div className="w3-clear"></div>
-    </div>
+    </>
   );
 };
 
