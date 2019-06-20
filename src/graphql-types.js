@@ -56,6 +56,7 @@ export const TRADER_ADMIN_DATA_QUERY = gql`
       admins
       market {
         id
+        name
       }
       name
       blurb

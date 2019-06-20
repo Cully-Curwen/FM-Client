@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Query } from 'react-apollo';
 import { MARKET_DETAILS_QUERY } from '../graphql-types';
+import { Link } from 'react-router-dom';
 import TraderTile from './TraderTile';
 
 function Market(props) {
@@ -39,7 +40,9 @@ function Market(props) {
               return (
                 <div className="trader-cards list">
                   {traders.map(trader => 
-                    <TraderTile key={trader.id} traderCard={trader} {...props} />  
+                    <Link key={trader.id} to={'/trader/' + trader.id} className="tablink" >
+                      <TraderTile traderCard={trader} {...props} />  
+                    </Link>
                   )}
                 </div>
               );
