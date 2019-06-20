@@ -7,14 +7,14 @@ function MarketTile(props) {
   
   return (
     <div className="market-tile tile" >
-      <img src={imgUrl} alt="Market Tile Img" />
-      <div className="tile-body">
-        <div className="tile-name">
-          {name}
-        </div>
-        <div className="tile-blurb">
-          {blurb}
-        </div>
+      <div className="tile-img">
+        <img src={imgUrl} alt="Market Tile Img" />
+      </div>
+      <div className="tile-name">
+        {name}
+      </div>
+      <div className="tile-blurb">
+        {blurb}
       </div>
       <div className="tile-footer">
         <div className="tile-open-hours">

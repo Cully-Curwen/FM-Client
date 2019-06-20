@@ -1,7 +1,7 @@
 .body {
   margin-top: 100px;
-  justify-content: center;
   display: flex;
+  justify-content: center;
 }
 
 .form-container {
@@ -100,7 +100,7 @@
   border: unset;
 }
 
-.market-list {
+.list {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
@@ -109,14 +109,21 @@
 
 .tile {
   width: 12rem;
-  height: auto;
+  height: 15rem;
   margin: 1rem;
   box-shadow: 3px 3px 3px grey;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: space-between;
 }
 
 .tile-body {
-  border-bottom: 1px black;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .tile-footer

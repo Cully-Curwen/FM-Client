@@ -146,6 +146,10 @@ export const TRADER_CARD_DETAILS_QUERY = gql`
       imgUrl
       links {
         website
+        email
+        facebook
+        twitter
+        instagram
       }
       produceTags
       inventory {
@@ -420,6 +424,10 @@ export const TRADER_ADMIN_REGISTER_MUTATION = gql`
         imgUrl
         links {
           website
+          email
+          facebook
+          twitter
+          instagram
         }
         produceTags
         inventory {
@@ -452,6 +460,10 @@ export const TRADER_ADMIN_LOGIN_MUTATION = gql`
         imgUrl
         links {
           website
+          email
+          facebook
+          twitter
+          instagram
         }
         produceTags
         inventory {

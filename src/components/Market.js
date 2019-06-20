@@ -34,7 +34,7 @@ function Market(props) {
               );
             case 'traderCards':
               return (
-                <div className="trader-cards">
+                <div className="trader-cards list">
                   {traders.map(trader => 
                     <TraderTile key={trader.id} traderCard={trader} {...props} />  
                   )}
@@ -57,7 +57,7 @@ function Market(props) {
                 onClick={() => setSlide('traderCards')}
               >Traders</button>
             </div>
-            <div className="market-container">
+            <div className="market-container panel">
               {displayLogic()}
             </div>
           </div>

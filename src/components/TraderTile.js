@@ -15,7 +15,7 @@ function TraderTile(props) {
           </div>
           <div className="tile-produce-tags">
             {produceTags.map(tag => 
-              <div className="tile-tag">{tag}</div>
+              <div className="tile-tag" key={tag} >{tag}</div>
             )}
           </div>
           <div className="tile-blurb">
