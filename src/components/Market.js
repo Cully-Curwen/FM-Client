@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Query } from 'react-apollo';
 import { MARKET_DETAILS_QUERY } from '../graphql-types';
 import TraderTile from './TraderTile';
-import '../styling/Market.css'
 
 function Market(props) {
   const [slide, setSlide] = useState('info');
@@ -17,19 +16,23 @@ function Market(props) {
         if (error) { return <div>Error! {error.message}</div> };
         
         // const { name, blurb, address, geoLocation, directions, imgUrl, openHours, traders } = data.marketDetails;
-        const { name, blurb, address, geoLocation, imgUrl, traders } = data.marketDetails;
+        const { name, blurb, address, directions, imgUrl, openHours, traders } = data.marketDetails;
+        const { openTime, closeTime, tradingDay } = openHours;
+
         
         const displayLogic = () => {
           switch (slide) {
             case 'info':
               return (
                 // Market Info Panel needed
-                <div className="market-info">
+                <div className="market-info info">
                   <img src={imgUrl} alt="of Market"/>
                   <h3>{name}</h3>
                   <p>{blurb}</p>
+                  <p>{tradingDay}</p>
+                  <p>{openTime + ' - ' + closeTime}</p>
                   <p>{address}</p>
-                  <p>{geoLocation.coordinates.join(', ')}</p>
+                  <p>{directions}</p>
                 </div>
               );
             case 'traderCards':
@@ -46,7 +49,7 @@ function Market(props) {
         };
 
         return (
-          <div className="market">
+          <div className="market panel">
             <div className="slide-select-container">
               <button 
                 className={"slide-select-btn" + (slide === 'info' ? ' slide-active' : '')}
@@ -57,9 +60,7 @@ function Market(props) {
                 onClick={() => setSlide('traderCards')}
               >Traders</button>
             </div>
-            <div className="market-container panel">
-              {displayLogic()}
-            </div>
+            {displayLogic()}
           </div>
         );
       }}
