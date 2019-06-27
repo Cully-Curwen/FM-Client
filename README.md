@@ -2,10 +2,6 @@
 
 A platform for Customer to discover their local farmers' markets, and pre-order produce for market day. It allows Market Administrator to share information about their Market and organise the Trader of the stalls in one location. The Traders can also share information about themselves, more importantly they can list their stall wares, for Customers to browse and pre-order produce.
 
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
 ### Prerequisites
 
 You will need to have the [fm-backend](https://github.com/Cully-Curwen/fm-backend) server up and running to supply data to this client.<br>
