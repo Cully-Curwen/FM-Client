@@ -1,13 +1,6 @@
 # Farmers' Market Platform - frontend
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+A platform for Customer to discover their local farmers' markets, and pre-order produce for market day. It allows Market Administrator to share information about their Market and organise the Trader of the stalls in one location. The Traders can also share information about themselves, more importantly they can list their stall wares, for Customers to browse and pre-order produce.
 
 ## Getting Started
 
@@ -15,61 +8,39 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+You will need to have the [fm-backend](https://github.com/Cully-Curwen/fm-backend) server up and running to supply data to this client.<br>
+By default this will be set to port 4000. 
+```
+const httplink = new HttpLink({
+  uri: 'http://localhost:4000/',
+});
+```
+If it is not running locally or on a different port the httplink will need to be changed for the ApolloClient. Go into src/index.js to change this.
 
-```
-Give examples
-```
+A MongoDB database is needed to have the server working.
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
+You will need to install the dependencies first with the comand 
 ```
-Give the example
+npm install
 ```
 
-And repeat
-
+Once you the backend server up and running you can run the app in development mode with the comand
 ```
-until finished
+npm start
 ```
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-End with an example of getting some data out of the system or using it for a little demo
-
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
+Once running you will be able to create accounts for Customers, Traders, and Market Admin. <br>
+Once you have an account you will be able to create persistent info about the Market/Trader and list products for that market as a trader, for customers to be able to browse and add to their baskets.
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+* [React](https://reactjs.org/) - A JavaScript library for building user interfaces
+* [Apollo Client](https://www.apollographql.com/docs/react/) - Apollo Client uses GraphQL to build client applications
+* [react-router](https://github.com/ReactTraining/react-router#readme) - Declarative routing for React
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* **Cully Curwen** - *Initial work*
